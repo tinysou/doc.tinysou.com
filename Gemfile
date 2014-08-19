@@ -10,6 +10,7 @@ gem "middleman-syntax"
 # plugin
 gem "sitemap_generator"
 gem "redcarpet"
+gem "compass", "~> 0.12.7"
 
 # pages
 gem 'font-awesome-sass'
