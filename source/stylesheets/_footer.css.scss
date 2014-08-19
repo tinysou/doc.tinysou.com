@@ -1,0 +1,16 @@
+.footer{
+  background-color: $gray-bg;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 50px;
+  color: black;
+  ul{
+    font-size: 12px;
+    margin: 0;
+    list-style: none;
+    li{
+      margin: 0;
+      padding-right: 10px;
+    }
+  }
+}

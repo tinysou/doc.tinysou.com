@@ -1,0 +1,47 @@
+.top-bar{
+  a{
+    font-weight: bold !important;
+  }
+  .title-area{
+    a{
+      padding-right: 8px !important;
+    }
+    i{
+      font-size: 30px;
+      line-height: inherit;
+      color: black;
+    }
+  }
+  section .left{
+    margin-left: 0;
+    a{
+      color: black;
+    }
+  }
+}
+.sub-nav-bar{
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  background-color: $gray-bg;
+  .large-7{
+    a{
+      font-size: 1.4rem;
+      color: black;
+    }
+  }
+  .sub-nav{
+    margin: 0;
+    dd{
+      margin-bottom: 3px;
+      border-bottom: solid 3px $gray-bg;
+      padding-bottom: 10px;
+      &:hover{
+        border-bottom: solid 3px $primary;
+      }
+      &.active{
+        border-bottom: solid 3px $primary;
+      }
+    }
+  }
+}

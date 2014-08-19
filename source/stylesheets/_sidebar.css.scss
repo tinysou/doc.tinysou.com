@@ -1,0 +1,19 @@
+.sidebar {
+  background-color: $gray-bg;
+}
+.side-nav {
+  li {
+    padding: rem-calc(5 20 5 20);
+    a {
+      padding-left: rem-calc(22);
+    }
+    &.heading {
+      margin-top: rem-calc(10);
+      font-weight: bold;
+      font-size: rem-calc(18);
+    }
+    &:not(.heading):hover, &.active {
+      background-color: scale-color($gray-bg, $lightness: -5%);
+    }
+  }
+}

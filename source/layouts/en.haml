@@ -1,0 +1,121 @@
+!!!5
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]> <html class="lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]> <html class="lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9 ]> <html class="lt-ie10"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
+%head
+  %meta{:charset => "utf-8"}/
+  %meta{:content => "Dotide Developer Center", :name => "description"}/
+  %meta{:content => "Freestorm", :name => "copyright"}/
+  %link{:href => "/humans.txt", :rel => "author", :type => "text/plain"}/
+  %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+  %meta{:content => "True", :name => "HandheldFriendly"}/
+  %meta{:content => "320", :name => "MobileOptimized"}/
+  %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
+  %meta{:content => "black-translucent", :name => "apple-mobile-web-app-status-bar-style"}/
+  %meta{:content => "on", "http-equiv" => "cleartype"}/
+  %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+  %title= data.page.title || "Dotide Developer Center"
+  = stylesheet_link_tag "application"
+  = yield_content :stylesheets
+  - if content_for? :styles
+    :css
+      #{yield_content :styles}
+  = javascript_include_tag "modernizr"
+  = yield_content :head
+%body
+  / Logo &amp; Top Nav
+  %nav.top-bar
+    %ul.title-area
+      %li.name
+        %h1
+          - link_to '/en/index.html' do
+            = image_tag('logo.png')
+            Developer Center
+    %section.top-bar-section
+      %ul
+        %li.divider
+        %li= link_to "Tutorial", '/en/tutorial/index.html'
+        %li.divider
+        %li= link_to "Workflow", '/en/workflow/index.html'
+        %li.divider
+        %li= link_to "SDK", '/en/sdk/index.html'
+        %li.divider
+        %li= link_to "API Service", '/en/api/index.html'
+        %li.divider
+        %li= link_to "FAQ", '/en/faq/index.html'
+        %li.divider
+        %li= link_to 'Source Code', 'https://github.com/dotide/developer.dotide.com'
+      %ul.right
+        %li.divider
+        %li= link_to 'Return to Dotide', 'https://dotide.com'
+
+  / Main page container
+  .row
+    .small-12.columns
+      = yield
+  / Footer
+  %footer.footer.row
+    .small-12.large-6.columns
+      %p
+        \&copy; Copyright #{Date.today.year.to_s} Dotide Developer Center
+    .small-12.large-6.columns
+      %p.right
+        %i.icon-heart
+        = link_to '托管于又拍云', 'https://www.upyun.com/?md=geakit'
+  /[if lt IE 9]
+    #ie-warning-overlay
+      #ie-warning
+        %h1 Did you know that your copy of Internet Explorer is terribly out of date?
+        %p
+          To get the best possible experience using our website, we recommend that you upgrade to the latest version or use another web browser.
+          Any of the following will provide a superior experience, not only on this site, but across the web.
+        %p
+          Just click one of the icons below to get to the download page.
+        %ul
+          %li
+            %a{href: 'http://microsoft.com/ie'}
+              = image_tag 'browser_ie.png', :alt => "Download Internet Explorer"
+              %p Internet Explorer 9+
+          %li
+            %a{href: 'http://mozilla.org/firefox'}
+              = image_tag 'browser_firefox.png', :alt => "Download Firefox"
+              %p Firefox
+          %li
+            %a{href: 'http://google.com/chrome'}
+              = image_tag 'browser_chrome.png', :alt => "Download Chrome"
+              %p Google Chrome
+          %li
+            %a{href: 'http://apple.com/safari'}
+              = image_tag 'browser_safari.png', :alt => "Download Safari"
+              %p Safari
+          %li
+            %a{href: 'http://opera.com'}
+              = image_tag 'browser_opera.png', :alt => "Download Opera"
+              %p Opera
+  :javascript
+    document.write('<script src=' +
+                   ('__proto__' in {} ? "#{asset_path :js, 'zepto'}" : "#{asset_path :js, 'jquery'}") +
+                   '><\/script>')
+  / Javascript
+  = javascript_include_tag "application"
+  = yield_content :javascripts
+  :javascript
+    $(document).ready(function () {
+      #{yield_content :onready}
+      $(document).foundation();
+    });
+
+  - if build?
+    -# Google Analytics
+    :javascript
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-43357115-2', 'dotide.com');
+      ga('send', 'pageview');
+
+</html>

@@ -1,0 +1,35 @@
+- if current_page.data.toc == 'article'
+  :coffee
+    h2_idx = 0
+    h3_idx = 0
+    toc = $('ol.toc')
+    lnode = toc
+    $('.markdown h2, .markdown h3').each ()->
+      elem = $(this);
+      hc = elem.text()
+      if elem.prop('tagName') is 'H2'
+        id = (h2_idx + 1).toString() + '-' + hc.replace(/\s+/g, '-')
+        anchor = '<a href="#' + id + '"><i class="fa fa-chain"></i></a>'
+        elem.prepend(anchor);
+        elem.attr('id', id)
+        toc_item = '<li><a href="#' + id + '">' + hc + '</a><ol></ol></li>'
+        toc.append(toc_item)
+        lnode = toc.children().last().children('ol')
+        h2_idx += 1
+      else
+        id = (h2_idx + 1).toString() + '-' + (h3_idx + 1).toString() + '-' + hc.replace(/\s+/g, '-')
+        anchor = '<a href="#' + id + '"><i class="fa fa-chain"></i></a>'
+        elem.prepend(anchor);
+        elem.attr('id', id)
+        toc_item = '<li><a href="#' + id + '">' + hc + '</a></li>'
+        lnode.append(toc_item)
+        h3_idx += 1
+- if current_page.data.toc == 'section'
+  :coffee
+    $('.markdown ul ul').each ()->
+      $(this).find('li a').each (idx, el)->
+        elem = $(this)
+        anchor = (idx + 1).toString() + '-' + elem.text().replace(/\s+/g, '-')
+        base_link = elem.attr('href')
+        link = base_link + '#' + anchor
+        elem.attr('href', link)

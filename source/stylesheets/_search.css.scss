@@ -1,0 +1,31 @@
+
+body form input.search-input {
+  line-height: $topbar-height / 2;
+}
+/* Change color of search result text */
+.tinysou-widget .autocomplete ul li p.title {
+  color: $primary;
+}
+
+/* Change background color of selected search result */
+.tinysou-widget .autocomplete ul li.active {
+  background: none;
+  background-color: $primary;
+  border-top: 1px solid $gray-light-border;
+  border-bottom: 1px solid $gray-light-border;
+}
+
+/* change the color of the section text (displayed below the title) */
+.tinysou-widget .autocomplete ul li.active .sections em {
+  color: white;
+}
+
+.ts-result-listing h3 a {
+  font-size: $h5-font-size;
+}
+
+.ts-snippet em {
+  color: #990000;
+  font-style: normal;
+  font-size: $h5-font-size;
+}

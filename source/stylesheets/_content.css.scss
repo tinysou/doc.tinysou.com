@@ -1,0 +1,28 @@
+.main-content .right-content{
+  background-color: white;
+  padding: 5px 20px 20px 20px;
+  & > h3{
+    font-size: 20px;
+    margin: 0 0 10px 0;
+  }
+  .block-guides{
+    background-color: white;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    h1{
+      font-size: 1.3rem;
+      margin: 0 0 10px 0;
+    }
+    h3{
+      color: $gray-dark2;
+      width: 100%;
+      padding-top: 5px;
+    }
+    ul{
+      li a{
+        margin-left: 22px;
+        font-size: 14px;
+      }
+    }
+  }
+}

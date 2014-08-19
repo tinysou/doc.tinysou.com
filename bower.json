@@ -1,0 +1,8 @@
+{
+  "name": "doc.tinysou.com",
+  "version": "0.0.1",
+  "dependencies": {
+    "foundation": "~5.2.3"
+  },
+  "private": true
+}
