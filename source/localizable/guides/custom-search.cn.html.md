@@ -17,8 +17,7 @@ title: 使用jQuery定制微搜索搜索结果
 
 ```
 $("#ts-search-input"). tinysouSearch({
-   engineKey: '97eaafba26b04d3cdeb9',
-   resultContainingElement: '#st-results-container'
+   engineKey: '97eaafba26b04d3cdeb9'
 });
 ```
 
