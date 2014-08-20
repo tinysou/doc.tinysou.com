@@ -153,7 +153,9 @@
   :javascript
     $(document).ready(function(){
       $('#ts-search-input').tinysouSearch({
+        resultContainingElement: '#ts-results-container',
         engineKey: '97eaafba26b04d3cdeb9',
+        perPage: 5,
         renderStyle: 'new_page',
         resultPageURL: '/search.html'
       });

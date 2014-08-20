@@ -83,7 +83,14 @@ layout: false
             %a{href: 'https://tinysou.com'}= '回到 微搜索'
       %hr
       / Main page container
-
+      .main-content
+        %form.row.collapse
+          .large-3.columns.medium-2.small-1
+            %p
+          .large-5.columns.medium-6.small-7
+            %input#ts-search-input{type: 'text', placeholder: '例如：内测'}
+          .large-1.columns.medium-2.small-2.end
+            %input.button.orange.small{type: 'submit', value: '搜索'}
       / Footer
       %footer.footer
         .row
@@ -143,7 +150,9 @@ layout: false
   :javascript
     $(document).ready(function(){
       $('#ts-search-input').tinysouSearch({
+        resultContainingElement: '#ts-results-container',
         engineKey: '97eaafba26b04d3cdeb9',
+        perPage: 4,
         renderStyle: 'new_page',
         resultPageURL: '/search.html'
       });
