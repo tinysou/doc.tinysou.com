@@ -1,3 +1,35 @@
-.main-content{
-  margin-top: 50px;
+.main-content {
+  .main-title {
+    margin-top: 50px;
+  }
+  .search-box {
+    padding-top: 20px;
+    padding-bottom: 60px;
+  }
+  input {
+   height: 45px;
+  }
+  .brand-nav {
+    li {
+      img {
+      width: 60%;
+      margin-bottom: 10px;
+      }
+      &:hover {
+        opacity: 0.8;
+        h5 {
+          color: $primary;
+        }
+      }
+    }
+  }
+  .welcome {
+    img {
+      width: 80px;
+      padding-left: 20px;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
 }
