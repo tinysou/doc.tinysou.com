@@ -28,27 +28,28 @@ layout: false
 %body
   .off-canvas-wrap
     .inner-wrap
-      .row
-        %nav.top-bar.hide-for-small
-          %ul.title-area
-            %li.name
-              %h1
-                %a{href: '/'}
-                  = "文档中心"
-          %section.top-bar-section
-            %ul.right
-              %li.nav-guides
-                = link_to '指南', '/guides/overview.html'
-              %li.nav-api
-                = link_to 'API', '/v1/overview.html'
-              %li.nav-crawler
-                = link_to '爬虫', '/crawler/overview.html'
-              %li.nav-libs
-                = link_to '库与插件', '/libs/overview.html'
-              %li.nav-changelog
-                %a{href: 'http://blog.tinysou.com/cn/tags/文档中心.html'}= '更新日志'
-              %li.nav-backtinysou
-                %a{href: 'https://tinysou.com'}= '回到 微搜索'
+      .gray-bg
+        .row
+          %nav.top-bar.hide-for-small
+            %ul.title-area
+              %li.name
+                %h1
+                  %a{href: '/'}
+                    = "文档中心"
+            %section.top-bar-section
+              %ul.right
+                %li.nav-guides
+                  = link_to '指南', '/guides/overview.html'
+                %li.nav-api
+                  = link_to 'API', '/v1/overview.html'
+                %li.nav-crawler
+                  = link_to '爬虫', '/crawler/overview.html'
+                %li.nav-libs
+                  = link_to '库与插件', '/libs/overview.html'
+                %li.nav-changelog
+                  %a{href: 'http://blog.tinysou.com/cn/tags/文档中心.html'}= '更新日志'
+                %li.nav-backtinysou
+                  %a{href: 'https://tinysou.com'}= '回到 微搜索'
       %nav.tab-bar.show-for-small
         %section.left-small
           %a.left-off-canvas-toggle.menu-icon
@@ -83,7 +84,46 @@ layout: false
             %a{href: 'https://tinysou.com'}= '回到 微搜索'
       %hr
       / Main page container
-
+      .main-content
+        .main-title.row
+          .large-12.columns
+            %h2.text-center 微搜索
+            %p.text-center 最好用的站内搜索引擎
+        .search-box
+          %form.row.collapse
+            .large-3.columns.medium-2.small-1
+              %p
+            .large-5.columns.medium-6.small-7
+              %input#ts-search-input{type: 'text', placeholder: '例如：内测'}
+            .large-1.columns.medium-2.small-2.end
+              %input.button.primary.small{type: 'submit', value: '搜索'}
+        .row
+          %hr
+        .brand-nav.wrap
+          .row
+            %ul.large-block-grid-4.large-12.columns
+              %li.text-center
+                = link_to '/guides/overview.html' do
+                  = image_tag('guides.png')
+                  %h5 指南
+              %li.text-center
+                = link_to '/v2/data/concepts.html' do
+                  = image_tag('api.png')
+                  %h5 API
+              %li.text-center
+                = link_to '/crawler/overview.html' do
+                  = image_tag('spider.png')
+                  %h5 爬虫
+              %li.text-center
+                = link_to '/libs/overview.html' do
+                  = image_tag('libs.png')
+                  %h5 库与插件
+        .wrap.welcome.black-bg
+          .row
+            .large-6.columns.text-right
+              %a.button.primary.large{:href => "http://dashboard.tinysou.com/signup"} 立即试用
+            .large-6.columns.text-left
+              = image_tag("logo.png")
       / Footer
       %footer.footer
         .row
@@ -143,7 +183,9 @@ layout: false
   :javascript
     $(document).ready(function(){
       $('#ts-search-input').tinysouSearch({
+        resultContainingElement: '#ts-results-container',
         engineKey: '97eaafba26b04d3cdeb9',
+        perPage: 4,
         renderStyle: 'new_page',
         resultPageURL: '/search.html'
       });
