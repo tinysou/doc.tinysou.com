@@ -1,235 +1,171 @@
 ---
 layout: guides.cn
-section: custom-styles
+section: custom-search
 toc: article
-title: 使用jQuery定制微搜索搜索结果
+title: 使用 jQuery 定制微搜索搜索结果
 ---
 
-# 使用jQuery定制微搜索搜索结果
+文档中的engineKey来自于[微搜索官方网站](http://tinysou.com/)，可以直接试用。
 
-文档中的引擎key来自于[微搜索官方网站](http://tinysou.com/)，可以直接试用。
+## 总述
 
-## 定制搜索返回结果的字段
+微搜索的所有搜索和自动补全行为，由 `jquery.tinysou.js` 完成，其初始化方式如下：
 
-通过添加 `fetchFields` 字段，可以指定返回结果包含哪些字段。如果不指定这一字段，返回结果默认包含 `title`， `url`， `section`。
-
-示例一
-
-```
-$("#ts-search-input"). tinysouSearch({
-   engineKey: '97eaafba26b04d3cdeb9'
+```javascript
+$('#ts-search-input').tinysouSearch({
+  engineKey: '97eaafba26b04d3cdeb9'
 });
 ```
 
-示例一结果
+其中 `engineKey` 为一个配置选项。tinysouSearch 还包含众多其他的配置选项，例如`perPage`, `sort`等等。
 
+下文中将为大家介绍几个主要的选项：
+
+## 定制自动补全的显示行为
+
+默认的自动补全显示函数如下：
+
+```javascript
+var defaultRenderActFunction = function(item) {
+  return '<p class="title">' + TinySou.htmlEscape(item['document']['title']) + '</p>';
+};
 ```
+
+其效果如下：
+
+![default-autocomplete-display](/images/default-autocomplete-display.png)
+
+其中`item`变量的结构如下:
+
+```json
 {
-  "info":{
-    "query":"搜索",
-    "page":0,
-    "per_page":5,
-    "total":11,
-    "max_score":0.41762865
+  "collection":"page",
+  "score":0.18271253,
+  "highlight":{
+    "title":["微搜索上线<em>内测</em>"],
+    "sections":["微搜索上线<em>内测</em>"],
+    "body":["     微搜索上线<em>内测</em>            2014 / 8 / 9    Michael Ding    公告     我们很高兴地在这里宣布，今天，微搜索正式开始上线<em>内测</em>了！  微搜索致力于为","微搜索致力于为大家提供一个易于安装又特性丰富的站内搜索引擎。本次的<em>内测</em>版本，跨站点全文搜索，并提供搜索框的下拉式自动补全。而整个过程只需要简单的三步：创建引擎，添加站点地址，复制代码到 html。  <em>内测</em>阶段需要注册码进行注册，想试用的朋友欢迎发邮件给我
+们索取注册码。"]
   },
-  "records":[
-    {
-      "collection":"page",
-      "score":0.41762865,
-      "highlight": {
-        "body":[
-          "搜索引擎博客设置登出微搜索搜索引擎博客设置登出",
-          "© 2014 微搜索苏ICP备12071270号南京自由风暴网络科技有限公司"],
-        "sections":[
-          "微搜索"],
-        "title":["微搜索"]
-      },
-      "document":{
-        "id":"bfa8ab471a86e40055d34585cf89f07d",
-        "title":"微搜索",
-        "sections":["微搜索"],
-        "url":"http://dashboard.tinysou.com/"
-        }
-    }, {
-      "collection":"page",
-      "score":0.17096238,
-      "highlight": {
-        "body":[
-          "微搜索首页博客控制台微搜索首页博客控制台微搜索最好用的站内搜索引擎",
-          "跨站搜索自动补全安装简单简单3步，给你的站点添加微搜索功能1. 创建搜索引擎2. 添加域名",
-          "3. 安装1. 创建搜索擎2. 添加域名3. 安装1 创建搜索引擎2 添加域名3"
-          ],
-        "sections":[
-          "微搜索",
-          "微搜索",
-          "简单3步，给你的站点添加微搜索功能",
-          "创建搜索引擎"
-          ],
-        "title":["微搜索"]
-        },
-      "document": {
-        "id":"91f676ba1b05116e557cdae67f47c609",
-        给你的站点添加微搜索功能1.创建搜索引擎2. 添加域名3. 安装",
-        "title":"微搜索",
-        "sections": ["微搜索","微搜索","简单3步，给你的站点添加微搜索功能","创建搜索引擎","添加域名","安装","1","2","3"],
-        "url":"http://tinysou.com/"
-      }
-    }
-  ],
-  "errors": {}
-}
-```
-
-在 `fetchFields` 中指定返回结果的字段包含 `title`， `url`。
-
-示例二
-
-```
-$("#ts-search-input").tinysouSearch({
- engineKey: '97eaafba26b04d3cdeb9',
- fetchFields: ['title', 'url']
-});
-```
-
-示例二结果
-
-```
-{
-  "info":{
-    "query":"搜索",
-    "page":0,
-    "per_page":10,
-    "total":11,
-    "max_score":0.41762865
-  },
-  "records":[
-    {
-      "collection":"page",
-      "score":0.41762865,
-      "highlight":{
-        "body":["微搜索搜索引擎博客设置登出微搜索搜索引擎博客设置登出",
-        "© 2014 微搜索苏ICP备12071270号南京自由风暴网络科技有限公司"
-        ],
-        "sections":[
-          "微搜索"
-        ],
-        "title":["微搜索"]
-      },
-      "document":{
-        "id":"bfa8ab471a86e40055d34585cf89f07d",
-        "title":"微搜索",
-        "url":"http://dashboard.tinysou.com/"
-      }
-    },{
-      "collection":"page",
-      "score":0.17096238,
-      "highlight":{
-        "body":[
-          "微搜索首页博客控制台微搜索首页博客控制台微搜索最好用的站内搜索引擎",
-          "跨站搜索自动补全安装简单简单3步，给你的站点添加微搜索功能1. 创建搜索引擎2. 添加域名",
-          "3. 安装1. 创建搜索擎2. 添加域名3. 安装1 创建搜索引擎2 添加域名3"
-        ],
-        "title":["微搜索"]
-      },
-      "document":{
-        "id":"91f676ba1b05116e557cdae67f47c609",
-        "title":"微搜索",
-        "url":"http://tinysou.com/"
-      }
-    }
-  ],
-  "errors": {}
-}
-```
-
-示例二结果的返回结果中只有 `title` 和 `url` 字段（返回结果中都会包含id字段）。
-
-## 指定搜索字段
-
-如果不指定 `searchFields`，默认将会在所有字段中进行搜索。通过指定 `searchFields`，搜索将会限定在这些字段中。
-
-示例三
-
-```
-$("#ts-search-input").tinysouSearch({
- engineKey: '97eaafba26b04d3cdeb9',
- fetchFields: ['title', 'url'],
- searchFields: ['title']
-});
-```
-
-示例三指定了仅在 `title` 字段中进行搜索，只有标题中有搜索词的条目才会呈现在返回结果中。
-
-## 排序
-
-设定 `sort` 可以进行结果排序。如果需要按照 `updated_at` 升序排列，按照示例四指定。
-
-示例四
-
-```
-$("#ts-search-input").tinysouSearch({
- engineKey: '97eaafba26b04d3cdeb9',
- fetchFields: ['title', 'url', 'updated_at'],
- sort: {
-   field: 'updated_at',
-   order: 'asc'
+  "document":{
+    "id":"bd44321fc4d76c6a01b36ec89d51fd58",
+    "title":"微搜索上线内测",
+    "sections":["微搜索官方博客","微搜索官方博客","微搜索上线内测"],
+    "url":"http://blog.tinysou.com/cn/2014/08/09/%E5%BE%AE%E6%90%9C%E7%B4%A2%E4%B8%8A%E7%BA%BF%E5%86%85%E6%B5%8B.html"
   }
+}
+```
+
+如果需要不同的自动补全显示行为(例如选择显示不同的`field`)，可以利用`renderActFunction`选项覆盖此函数，方法如下:
+
+```javascript
+var customRenderActFunction = function(item) {
+  var out = '<p class="title">' + item['document']['title'] + '</p>';
+  out = out.concat('<p class="url">' + item['document']['sections'][0] + '</p>');
+  return out;
+};
+$('#ts-search-input').tinysouSearch({
+  engineKey: '97eaafba26b04d3cdeb9',
+  renderActFunction: customRenderActFunction
 });
 ```
 
-示例四结果
+## 定制搜索的显示行为
+
+默认的搜索显示函数如下：
+
+```javascript
+var defaultRenderFunction = function (item) {
+  var resultTemplate = Hogan.compile('<div class="ts-result"><h3 class="title"><a href="{{url}}" class="ts-search-result-link">{{title}}</a></h3><div class="ts-metadata"><span class="ts-snippet">{{{body}}}</span></div></div>');
+  var data = {
+    title: item['document']['title'],
+    url: item['document']['url'],
+    body: (item.highlight && item.highlight['body']) || item['document']['sections'].join(',')
+  };
+  return resultTemplate.render(data);
+};
+```
+
+其效果如下：
+
+![default-search-display](/images/default-search-display.png)
+
+其中`item`变量的结构和上一节中的一致。
+
+如果需要不同的搜索显示行为(例如选择显示不同的`field`)，可以利用`renderFunction`选项覆盖此函数，方法如下:
+
+```javascript
+var customRenderFunction = function(item) {
+  var out = '<p class="title">' + item['document']['title'] + '</p>';
+  out = out.concat('<p class="url">' + item['document']['sections'][0] + '</p>');
+  return out;
+};
+$('#ts-search-input').tinysouSearch({
+  engineKey: '97eaafba26b04d3cdeb9',
+  renderFunction: customRenderFunction
+});
+```
+
+## 定制搜索和自动补全行为
+
+### 设定分页选项
+
+`perPage`指定搜索时每页返回的结果个数，默认值为`10`，最大值为`100`。
+
+`resultLimit`指定自动补全时每页返回的结果个数，默认值为`5`，最大值为`100`。
+
+### 设定搜索目标`collection`
+
+关于`collection`的概念，可参见'[基本概念][concept]'
+
+可以通过`collection`选项指定搜索的目标`collection`，可以指定多个collection，方法是多个`collection` 名之间用','分隔，例如:
 
 ```
+$('#ts-search-input').tinysouSearch({
+  engineKey: '97eaafba26b04d3cdeb9',
+  collection: 'page,book'
+});
+```
+
+`collection`选项默认值为`'page'`
+
+### 返回结果包含的`field`
+
+`fetchFields`指定返回结果中，每条记录包含的`field`。即上文 `item` 变量中`document`中包含的属性值。
+
+默认值为`['title', 'url', 'sections']`
+
+例如
+
+```javascript
+$("#ts-search-input"). tinysouSearch({
+   engineKey: '97eaafba26b04d3cdeb9',
+   fetchFields: ['title', 'url', 'sections', 'body']
+});
+```
+
+`item`变量则变为：
+
+```json
 {
-  "info":{
-    "query":"搜索",
-    "page":0,
-    "per_page":10,
-    "total":11,
-    "max_score":0.41762865
+  "collection":"page",
+  "score":0.18271253,
+  "highlight":{
+    "title":["微搜索上线<em>内测</em>"],
+    "sections":["微搜索上线<em>内测</em>"],
+    "body":["     微搜索上线<em>内测</em>            2014 / 8 / 9    Michael Ding    公告     我们很高兴地在这里宣布，今天，微搜索正式开始上线<em>内测</em>了！  微搜索致力于为","微搜索致力于为大家提供一个易于安装又特性丰富的站内搜索引擎。本次的<em>内测</em>版本，跨站点全文搜索，并提供搜索框的下拉式自动补全。而整个过程只需要简单的三步：创建引擎，添加站点地址，复制代码到 html。  <em>内测</em>阶段需要注册码进行注册，想试用的朋友欢迎发邮件给我
+们索取注册码。"]
   },
-  "records":[
-    {
-      "collection":"page",
-      "score":0.41762865,
-      "highlight":{
-        "body":[
-          "搜索引擎博客设置登出微搜索搜索引擎博客设置登出",
-          "© 2014 微搜索苏ICP备12071270号南京自由风暴网络科技有限公司"],
-        "sections":[
-          "微搜索"],
-        "title":["微搜索"]
-      },
-      "document":{
-        "id":"bfa8ab471a86e40055d34585cf89f07d",
-        "title":"微搜索",
-        "updated_at":"2014-08-19T03:00:06.776Z",
-        "url":"http://dashboard.tinysou.com/"
-      }
-    },{
-      "collection":"page",
-      "score":0.17096238,
-      "highlight":{
-        "body":[
-          "微搜索首页博客控制台微搜索首页博客控制台微搜索最好用的站内搜索引擎",
-          "跨站搜索自动补全安装简单简单3步，给你的站点添加微搜索功能1. 创建搜索引擎2. 添加域名",
-          "3. 安装1. 创建搜索擎2. 添加域名3. 安装1 创建搜索引擎2 添加域名3"
-          ],
-        "sections":[
-          "微搜索",
-          "微搜索",
-          "简单3步，给你的站点添加微搜索功能",
-          "创建搜索引擎"
-          ],
-        "title":["微搜索"]},
-      "document":{
-        "id":"91f676ba1b05116e557cdae67f47c609",
-        "title":"微搜索",
-        "updated_at":"2014-08-19T03:00:06.620Z",
-        "url":"http://tinysou.com/"
-      }
-    }
-  ],
-  "errors":{}
+  "document":{
+    "id":"bd44321fc4d76c6a01b36ec89d51fd58",
+    "title":"微搜索上线内测",
+    "sections":["微搜索官方博客","微搜索官方博客","微搜索上线内测"],
+    "url":"http://blog.tinysou.com/cn/2014/08/09/%E5%BE%AE%E6%90%9C%E7%B4%A2%E4%B8%8A%E7%BA%BF%E5%86%85%E6%B5%8B.html",
+    "body": "     微搜索上线内测            2014 / 8 / 9    Michael Ding    公告     我们很高兴地在这里宣布，今天，微搜索正式开始上线内测了！  微搜索致力于为","微搜索致力于为大家提供一个易于安装又特性丰富的站内搜索引擎。本次的内测版本，跨站点全文搜索，并提供搜索框的下拉式自动补全。而整个过程只需要简单的三步：创建引擎，添加站点地址，复制代码到 html。  内测阶段需要注册码进行注册，想试用的朋友欢迎发邮件给我
+们索取注册码。"
+  }
 }
 ```
+
+
+[concept]:/guides/concept.html
