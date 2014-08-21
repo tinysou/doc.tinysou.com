@@ -10,6 +10,7 @@ title: 自定义搜索样式
 注意：为了定制微搜索样式，你需要对HTML和CSS相关知识有一些了解。
 
 ## 搜索框样式
+
 安装微搜索搜索框时，可以为 `input` 元素添加 `ts-search-input` CSS class来覆盖默认的样式。
 
 ```
@@ -30,6 +31,7 @@ body form input.ts-search-input {
 ```
 
 ## 自动补全下拉框样式
+
 定制自动补全下拉框的样式，需覆盖 `.tinysou-widget .autocomplete` 的默认样式。
 
 ```
@@ -101,4 +103,5 @@ body form input.ts-search-input {
 ```
 
 ## 更多定制
+
 如果你熟悉HTML/CSS/Javascript，可以通过查看[微搜索插件](https://github.com/tinysou/tinysou-search.js)来定制搜索结果的显示。
