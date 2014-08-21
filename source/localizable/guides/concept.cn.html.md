@@ -65,6 +65,9 @@ title: 基本概念
 
 而如果你想利用微搜索进行网页的搜索，并且不想通过 API 的方式向微搜索提交需要搜索的资源，则可以使用爬虫方式。
 
-要使用爬虫，只需要提交待搜索网站的网址，微搜索的爬虫就会自动爬取该网站的页面，在 `engine` 中建立相应的 `document` 资源。
+要使用爬虫，只需要提交待搜索网站的网址，微搜索的爬虫就会自动爬取该网站的页面，在 `engine` 中建立相应的 `document` 资源。添加方式如下图所示：
+
+![添加域名][add-domain]
 
 [resource_structure]:/images/resource_structure.png
+[add-domain]:/images/add-domain.png
