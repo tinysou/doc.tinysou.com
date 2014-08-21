@@ -1,6 +1,6 @@
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
-  <ShortName> Tinysou Doc</ShortName>
-  <Description>Search 微搜索文档</Description>
+  <ShortName> 微搜索 </ShortName>
+  <Description>搜索微搜索</Description>
   <InputEncoding>UTF-8</InputEncoding>
   <Url type="text/html" method="get" template="http://doc.tinysou.com/search.html#tsq={searchTerms}&amp;tsp=0"/>
 </OpenSearchDescription>
