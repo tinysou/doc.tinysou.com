@@ -46,6 +46,7 @@ title: 基本概念
 ### document
 
 微搜索中，对于具体的一个个资源的概念是 `document`，类似于 mysql 中的 record, mongodb 中的 document。每个`document`拥有一个id，以及符合所属 `collection` 中规定的 'schema' 的内容。例如：
+
 ```json
 {
   "title": "微搜索上线内测",
@@ -55,6 +56,5 @@ title: 基本概念
   "body": "我们很高兴地在这里宣布，今天，微搜索正式开始上线内测了！"
 }
 ```
-
 
 [resource_structure]:/images/resource_structure.png
