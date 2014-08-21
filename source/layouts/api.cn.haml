@@ -1,0 +1,50 @@
+= wrap_layout 'cn' do
+  .row.main-content
+    .large-3.small-12.columns
+      .hide-for-small
+        .sidebar
+          %nav
+            %ul.side-nav
+              %li.heading
+                %i.fa.fa-book
+                = '指南'
+              %li.nav-api-overview
+                = link_to 'API 总览', '/v1/overview.html'
+              %li.nav-api-indexing
+                = link_to '资源与索引 API', '/v1/indexing.html'
+              %li.nav-api-searching
+                = link_to '搜索 API', '/v1/searching.html'
+              %li.nav-api-autocomplete
+                = link_to '自动补全 API', '/v1/autocomplete.html'
+              %li.nav-api-public
+                = link_to '公开(public) API', '/v1/public.html'
+    .large-9.small-12.columns
+      .right-content
+        - if content_for? :raw_content
+          = yield_content :raw_content
+        - else
+          %h1= current_page.data.title
+          %ol.toc
+          .markdown= yield
+
+  - content_for :second_nav do
+    %ul.off-canvas-list
+      %li
+        %label= '指南'
+      %li.nav-api-overview
+        = link_to 'API 总览', '/v1/overview.html'
+      %li.nav-api-indexing
+        = link_to '资源与索引 API', '/v1/indexing.html'
+      %li.nav-api-searching
+        = link_to '搜索 API', '/v1/searching.html'
+      %li.nav-api-autocomplete
+        = link_to '自动补全 API', '/v1/autocomplete.html'
+      %li.nav-api-public
+        = link_to '公开(public) API', '/v1/public.html'
+
+  - content_for :javascripts do
+    :coffee
+      $('li.nav-api').addClass('active')
+      $("li.nav-api-#{current_page.data.section}").addClass('active')
+
+    = partial '/layouts/toc'

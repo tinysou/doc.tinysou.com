@@ -42,6 +42,9 @@ title: 基本概念
   "body": "text"
 }
 ```
+表示其所包含 `document` 有 "title", "tags", "published_date", "url", "body" 几个 `field` 组成，每个 `field` 的类型(`type`) 分别是："string", "string", "date", "enum", "text"。
+
+关于微搜索支持详细的`field` `type`列表，参见 [Field Types][field_types] 一节。
 
 ### document
 
@@ -71,3 +74,4 @@ title: 基本概念
 
 [resource_structure]:/images/resource_structure.png
 [add-domain]:/images/add-domain.png
+[field_types]:/v1/overview.html#2-Field-Types
