@@ -57,4 +57,14 @@ title: 基本概念
 }
 ```
 
+## 爬虫
+
+微搜索提供两种方式向 `engine` 提交 `document`：API 和 爬虫。
+
+当使用 API 时，用户可以自己定义 `collection`，例如 `name` 和 `field_types`(schema)。更加可控地向 `engine` 提交需要搜索的资源。
+
+而如果你想利用微搜索进行网页的搜索，并且不想通过 API 的方式向微搜索提交需要搜索的资源，则可以使用爬虫方式。
+
+要使用爬虫，只需要提交待搜索网站的网址，微搜索的爬虫就会自动爬取该网站的页面，在 `engine` 中建立相应的 `document` 资源。
+
 [resource_structure]:/images/resource_structure.png
