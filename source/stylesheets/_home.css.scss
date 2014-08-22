@@ -31,5 +31,10 @@
         opacity: 0.8;
       }
     }
+    @media #{$small-only} {
+      .small-12 {
+        text-align: center !important;
+      }
+    }
   }
 }
