@@ -143,13 +143,13 @@ Status: 200 OK
 ### `Authorization` Header 方式
 
 ```
-$ curl -H "Authorization: token AUTH_TOKEN" http://api.tinysou.com/v1
+$ curl -H "Authorization: token YOUR_AUTH_TOKEN" http://api.tinysou.com/v1
 ```
 
 ### `auth_token` 参数
 
 ```
-$ curl http://api.tinysou.com/v1?auth_token=AUTH_TOKEN
+$ curl http://api.tinysou.com/v1?auth_token=YOUR_AUTH_TOKEN
 ```
 
 [resource_structure]:/images/resource_structure.png

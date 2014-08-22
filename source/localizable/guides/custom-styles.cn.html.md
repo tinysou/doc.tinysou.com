@@ -101,7 +101,3 @@ body form input.ts-search-input {
   font-size: 18px;
 }
 ```
-
-## 更多定制
-
-如果你熟悉HTML/CSS/Javascript，可以通过查看[微搜索插件](https://github.com/tinysou/tinysou-search.js)来定制搜索结果的显示。
