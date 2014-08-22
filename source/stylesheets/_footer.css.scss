@@ -1,15 +1,26 @@
-.footer{
+.footer {
   background-color: $gray-bg;
   padding-top: 40px;
   padding-bottom: 40px;
   color: black;
-  ul{
+  ul {
     font-size: 12px;
     margin: 0;
     list-style: none;
     li{
       margin: 0;
       padding-right: 10px;
+    }
+  }
+  .list {
+    font-size: 12px;
+  }
+  @media #{$small-only} {
+    li, p {
+      text-align: center;
+    }
+    p {
+      margin-top: 8px;
     }
   }
 }
