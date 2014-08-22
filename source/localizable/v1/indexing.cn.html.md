@@ -58,7 +58,7 @@ POST /engines
 
 | 名称    | 类型    | 说明 |
 | ------ | ------ | ------------------------------------------------------ |
-| name   | string | `engine`的唯一标识。格式：字母，数字，'-' 组成，且不以'-'开头，长度3-60字符。**必需** |
+| name   | string | `engine`的唯一标识。格式：字母，数字，‘-’ 组成，且不以 ‘-’ 开头，长度3-60字符。**必需** |
 | display_name   | string | 显示名。 **可选**|
 
 #### 示例
@@ -230,8 +230,8 @@ POST /engines/:engine_name/collections
 
 | 名称    | 类型    | 说明 |
 | ------ | ------ | ------------------------------------------------------ |
-| name   | string | `collection`的唯一标识。格式：字母，数字，'-' 组成，且不以'-'开头，长度3-60字符。**必需** |
-| field_types   | hash | 描述包含`documents`的schema。 具体内容可参见[Field Types][field_types] 小节。**必需**|
+| name   | string | `collection`的唯一标识。格式：字母，数字，‘-’ 组成，且不以 ‘-’ 开头，长度3-60字符。**必需** |
+| field_types   | hash | 描述包含`documents`的 schema。 具体内容可参见[Field Types][field_types] 小节。**必需**|
 
 ####示例
 
@@ -451,10 +451,10 @@ Status: 200 OK
 PUT /engines/:engine_name/collections/:collection_name/documents/:document_id
 ```
 
-当 `id` 为 :document_id 的 `document` 不存在时，会创建一个 `id` 值为 :document_id 的 `document`；
-否则会更新 `id` 为 :document_id 的 `document`。
+当 `id` 为 ':document\_id' 的 `document` 不存在时，会创建一个 `id` 值为 ':document\_id' 的 `document`；
+否则会更新 `id` 为 ':document\_id' 的 `document`。
 
-即一次 'Upsert'
+即一次 ‘Upsert’。
 
 #### 参数
 
@@ -465,7 +465,7 @@ PUT /engines/:engine_name/collections/:collection_name/documents/:document_id
 > 请求
 
 ```
-curl -XUT 'http://api.tinysou.com/v1/engines/demo/collections/post/documents/293ddf9205df9b36ba5761d61ca59a29' \
+curl -XPUT 'http://api.tinysou.com/v1/engines/demo/collections/post/documents/293ddf9205df9b36ba5761d61ca59a29' \
   -H "Authorization: token YOUR_AUTH_TOKEN" \
   -d '{
         "title": "支持拼音搜索",
