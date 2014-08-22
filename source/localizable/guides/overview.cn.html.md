@@ -1,7 +1,7 @@
 ---
 layout: guides.cn
 section: overview
-title: 指南总览
+title: 指南概述
 ---
 
 #### [基本概念][concept]

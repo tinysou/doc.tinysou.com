@@ -2,7 +2,7 @@
 layout: api.cn
 section: overview
 toc: article
-title: API 总览
+title: API 概述
 ---
 
 微搜索提供一套完整的 API，涵盖从创建引擎，索引资源到搜索的方方面面。
