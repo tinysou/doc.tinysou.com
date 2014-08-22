@@ -2,12 +2,12 @@
 layout: api.cn
 section: indexing
 toc: article
-title: 资源与索引 API
+title: 索引 API
 ---
 
 ## 总述
 
-资源与索引相关 API，均需要提供 `auth_token` 以通过权限验证。验证方式请参考[权限验证][auth]一节。
+索引相关 API，均需要提供 `auth_token` 以通过权限验证。验证方式请参考[权限验证][auth]一节。
 
 ## Engine
 
