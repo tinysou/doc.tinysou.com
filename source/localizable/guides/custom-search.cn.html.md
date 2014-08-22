@@ -118,7 +118,7 @@ $('#ts-search-input').tinysouSearch({
 
 关于`collection`的概念，可参见'[基本概念][concept]'
 
-可以通过`collection`选项指定搜索的目标`collection`，可以指定多个collection，方法是多个`collection` 名之间用','分隔，例如:
+可以通过`collection`选项指定搜索的目标`collection`，可以指定多个collection，方法是多个`collection` 名之间用 ‘,’ 分隔，例如:
 
 ```
 $('#ts-search-input').tinysouSearch({
@@ -131,7 +131,7 @@ $('#ts-search-input').tinysouSearch({
 
 ### 返回结果包含的`field`
 
-`fetchFields`指定返回结果中，每条记录包含的`field`。即上文 `item` 变量中`document`中包含的属性值。
+`fetchFields`指定返回结果中，每条记录包含的 `field`。即上文 `item` 变量中 `document` 包含的属性值。
 
 默认值为`['title', 'url', 'sections']`
 
