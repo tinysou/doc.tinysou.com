@@ -15,13 +15,13 @@ title: 添加 opensearch 支持
 
 ### 1. 确认网站具有搜索功能
 
-通过添加微搜索插件，使网站具有搜索功能，并提供一个搜索的页面,如
+通过添加微搜索插件，使网站具有搜索功能，并提供一个搜索的页面,如：
 
 ```
 http://doc.tinysou.com/search.html#tsq={searchTerms}&tsp=0
 ```
 
-### 2.添加 XML 描述文件
+### 2. 添加 XML 描述文件
 
 在网站的根目录下，添加 xml 文件，比如 `opensearch.xml` 。
 
@@ -34,7 +34,7 @@ http://doc.tinysou.com/search.html#tsq={searchTerms}&tsp=0
 </OpenSearchDescription>
 ```
 
-### 3.引用 XML 描述文件
+### 3. 引用 XML 描述文件
 
 在 HTML 的 head 标签中添加如下代码。
 

@@ -25,13 +25,13 @@ title: API 总览
 
 `engine`是资源组织结构中最顶层的概念，类似于 mysql 中的 database，mongodb 中的 db, s3中的 bucket。
 
-每个`engine` 有1个`name`，为全局唯一，可由字母，数字和'-'构成。另外每个`engine`有一个`engine_key`，可用于在搜索 API 调用时指定 `engine`。
+每个`engine` 有1个`name`，为全局唯一，可由字母，数字和 ‘-’ 构成。另外每个`engine`有一个`engine_key`，可用于调用 [搜索 API][search_api] 时指定 `engine`。
 
 ### collection
 
-`collection` 定义了 `document` 的 'schema'，包含了拥有类似 'schema' 的一系列 `document`，类似于 mysql 中的 table, mongodb 中的 collection。
+`collection` 定义了 `document` 的 ‘schema’，包含了拥有类似 ‘schema’ 的一系列 `document`，类似于 mysql 中的 table, mongodb 中的 collection。
 
-每个`collection` 有1个`name`，在同一个`engine`中唯一，可由字母，数字和'-'构成。另外每个`collection`还有一个`field_types`，描述了所包含`document`的 'schema'。例如：
+每个`collection` 有1个`name`，在同一个`engine`中唯一，可由字母，数字和 ‘-’ 构成。另外每个`collection`还有一个`field_types`，描述了所包含`document`的 ‘schema’。例如：
 
 ```json
 {
@@ -43,13 +43,13 @@ title: API 总览
 }
 ```
 
-表示其所包含 `document` 有 "title", "tags", "published_date", "url", "body" 几个 `field` 组成，每个 `field` 的类型(`type`) 分别是："string", "string", "date", "enum", "text"。
+表示 `document` 由 ‘title’, ‘tags’, ‘published_date’, ‘url’, ‘body’ 这些 `field` 组成，每个 `field` 的类型(`type`) 分别是：‘string’, ‘string’, ‘date’, ‘enum’, ‘text’。
 
-关于微搜索支持详细的`field` `type`列表，参见下面 [Field Types][field_types] 小节。
+`field` `type` 的详细列表，参见下面 [Field Types][field_types] 小节。
 
 ### document
 
-微搜索中，对应于具体的一个个资源的概念是 `document`，类似于 mysql 中的 record, mongodb 中的 document。每个`document`拥有一个id，以及符合所属 `collection` 中规定的 'schema' 的内容。例如：
+微搜索中， `document` 对应于具体的一个个资源，类似于 mysql 中的 record, mongodb 中的 document。每个`document`拥有一个id，以及符合所属 `collection` 中规定的 ‘schema’ 内容。例如：
 
 ```json
 {
@@ -66,19 +66,19 @@ title: API 总览
 
 在介绍 `collection` 时，我们提到每个 `collection` 包含一个 `field_types`属性，用于定义所包含 `document` 的 **schema**。
 
-`field_types`是一个 `hash`，其 **key** 表示 `field`的 **name**, **value** 表示 `field`的 **type**。关于微搜索支持的`field` `type` 的详细列表如下所示：
+`field_types`是一个 `hash`，其中 **key** 表示 `field`的 **name**, **value** 表示 `field`的 **type**。`field` `type` 的详细列表如下：
 
 ### field types 列表
 
 | Type | 描述 |
 | ------- | ------ |
-| string  | 较短的字符串(长度200以内)。例如博客的标题，章节标题等等。本类型可被用于"全文搜索"(`full text search`)，并且会为自动补全做优化。例如："che", "cxy" 会匹配 "程序员"(chengxuyuan) |
+| string  | 较短的字符串(长度200以内)。例如博客的标题，章节标题等等。本类型可被用于"全文搜索"(`full text search`)，并且会为自动补全做优化。例如："che", "cxy" 会匹配 "程序员"(chengxuyuan)。 |
 | text    | 长文本。例如书的章节内容，博客的正文。本类型可被用于"全文搜索" |
 | enum    | 特殊的字符串，用于精确匹配。例如 id, url 等等。本类型可被用于精确匹配搜索，过滤，排序等等。 |
 | integer | 整数。本类型可被用于精确匹配搜索，过滤，排序等等。 |
 | float   | 浮点数。本类型可被用于精确匹配搜索，过滤，排序等等。 |
 | date    | ISO 8601 格式的时间字符串。例如 "2014-08-16T00:00:00Z"。本类型可被用于精确匹配搜索，过滤，排序等等。 |
-| location| 地理位置。由经纬度表示。可以是`hash`: { lon: 经度值, lat: 纬度值}，也可以是`array`: [经度值,纬度值] |
+| location| 地理位置。由经纬度表示。可以是`hash`: { lon: 经度值, lat: 纬度值}，也可以是`array`: [经度值,纬度值]。 |
 
 ### field types 适用场景
 
@@ -138,7 +138,7 @@ Status: 200 OK
 
 除了 公开(Public) API，所有的 API 调用都需要通过权限验证。
 
-微搜索支持两种携带认证信息的方式：通过 `Authorization` Header 和 通过 `auth_token` 参数。
+微搜索支持两种携带认证信息的方式：通过 `Authorization` Header 和通过 `auth_token` 参数携带。
 
 ### `Authorization` Header 方式
 
@@ -154,3 +154,4 @@ $ curl http://api.tinysou.com/v1?auth_token=AUTH_TOKEN
 
 [resource_structure]:/images/resource_structure.png
 [field_types]:/v1/overview.html#3-Field-Types
+[search_api]:/v1/searching.html
