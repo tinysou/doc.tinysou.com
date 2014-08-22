@@ -74,4 +74,4 @@ title: 基本概念
 
 [resource_structure]:/images/resource_structure.png
 [add-domain]:/images/add-domain.png
-[field_types]:/v1/overview.html#2-Field-Types
+[field_types]:/v1/overview.html#3-Field-Types

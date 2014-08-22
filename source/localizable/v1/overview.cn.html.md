@@ -153,4 +153,4 @@ $ curl http://api.tinysou.com/v1?auth_token=AUTH_TOKEN
 ```
 
 [resource_structure]:/images/resource_structure.png
-[field_types]:/v1/overview.html#2-Field-Types
+[field_types]:/v1/overview.html#3-Field-Types
