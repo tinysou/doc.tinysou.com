@@ -522,8 +522,6 @@ curl -XDELETE 'http://api.tinysou.com/v1/engines/demo/collections/post/documents
 Status: 204 No Content
 ```
 
-
-
 [auth]:/v1/overview.html#5-权限验证
 [field_types]:/v1/overview.html#3-Field-Types
 [upsert-a-doc]:/v1/indexing.html#4-14-创建或更新一个-Document
