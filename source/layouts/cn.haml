@@ -63,7 +63,8 @@
           %a.left-off-canvas-toggle.menu-icon
             %span
         %section.middle.tab-bar-section
-          %h1.title= "微搜索 文档中心"
+          %a{:href => "/"}
+            %h1.title= "微搜索 文档中心"
         - if content_for? :second_nav
           %section.right-small
             %a.right-off-canvas-toggle.menu-icon
