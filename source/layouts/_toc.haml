@@ -17,7 +17,7 @@
         lnode = toc.children().last().children('ol')
         h2_idx += 1
       else
-        id = (h2_idx + 1).toString() + '-' + (h3_idx + 1).toString() + '-' + hc.replace(/\s+/g, '-')
+        id = h2_idx.toString() + '-' + (h3_idx + 1).toString() + '-' + hc.replace(/\s+/g, '-')
         anchor = '<a href="#' + id + '"><i class="fa fa-chain"></i></a>'
         elem.prepend(anchor);
         elem.attr('id', id)
