@@ -87,18 +87,15 @@ curl -XPUT 'http://api.tinysou.com/v1/engines/blog/collections/post/documents/53
 
 ## 3. 搜索/自动补全
 
-现在就可以执行搜索或自动补全了。首先复制你的`engine_key`，如下图所示：
-
-[复制engine_key][copy_engine_key]
+现在就可以执行搜索或自动补全了。
 
 ### 搜索
 
 ```
-curl -XPOST 'http://api.tinysou.com/v1/public/search' \
+curl -XPOST 'http://api.tinysou.com/v1/engines/blog/collections/post/search' \
   -H 'Content-Type: application/json' \
+  -H 'Authorization: token YOUR_AUTH_TOKEN' \
   -d '{
-        "engine_key": "YOUR_ENGINE_KEY",
-        "c": "post",
         "q": "微搜索拼音补全"
       }' | json_reformat
 ```
@@ -169,11 +166,10 @@ curl -XPOST 'http://api.tinysou.com/v1/public/search' \
 ### 自动补全
 
 ```
-curl -XPOST 'http://api.tinysou.com/v1/public/autocomplete' \
+curl -XPOST 'http://api.tinysou.com/v1/engines/blog/collections/post/autocomplete' \
   -H 'Content-Type: application/json' \
+  -H 'Authorization: token YOUR_AUTH_TOKEN' \
   -d '{
-        "engine_key": "YOUR_ENGINE_KEY",
-        "c": "post",
         "q": "piny"
       }' | json_reformat
 ```
