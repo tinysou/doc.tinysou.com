@@ -7,7 +7,7 @@ title: 索引 API
 
 ## 总述
 
-索引相关 API，均需要提供 `auth_token` 以通过权限验证。验证方式请参考[权限验证][auth]一节。
+索引 API，均需要提供 `auth_token` 以通过权限验证。验证方式请参考[权限验证][auth]一节。
 
 ## Engine
 
@@ -59,7 +59,7 @@ POST /engines
 | 名称    | 类型    | 说明 |
 | ------ | ------ | ------------------------------------------------------ |
 | name   | string | `engine`的唯一标识。格式：字母，数字，‘-’ 组成，且不以 ‘-’ 开头，长度3-60字符。**必需** |
-| display_name   | string | 显示名。 **可选**|
+| display_name   | string | 显示名。 **可选** |
 
 #### 示例
 
@@ -522,7 +522,7 @@ curl -XDELETE 'http://api.tinysou.com/v1/engines/demo/collections/post/documents
 Status: 204 No Content
 ```
 
-[auth]:/v1/overview.html#5-权限验证
+[auth]:/v1/overview.html#6-权限验证
 [field_types]:/v1/overview.html#3-Field-Types
 [upsert-a-doc]:/v1/indexing.html#4-14-创建或更新一个-Document
 [create-a-doc]:/v1/indexing.html#4-12-创建一个-Document(指定-id-方式)

@@ -96,6 +96,10 @@ title: API 概述
 
 除了 `location`类型外，其余任何类型的 `field` 的值都可以是由该类型值组成的数组。例如 `field` "title" 的类型是 `string`，则 "title" 的值可以为 ["第一章", "第二章"]。
 
+## score
+
+在搜索结果中，每个`document`都有一个`score`。默认情况下，`score`表示该`document`与搜索内容的相符程度。
+
 ## 调用约定
 
 ### URI 前缀
