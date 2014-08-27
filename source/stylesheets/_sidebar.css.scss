@@ -12,7 +12,7 @@
       font-weight: bold;
       font-size: rem-calc(18);
     }
-    &:not(.heading):hover, &.active {
+    &:not(.heading):hover, &.active, a:not(.button):hover {
       background-color: scale-color($gray-bg, $lightness: -5%);
     }
   }
