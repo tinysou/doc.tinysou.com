@@ -2,16 +2,16 @@
 layout: guides.cn
 section: opensearch
 toc: article
-title: 添加 opensearch 支持
+title: 添加 OpenSearch 支持
 ---
 
-## 什么是 Opensearch
+## 什么是 OpenSearch
 用户访问某个网站，如果该网站具备搜索功能，并提供遵循 OpenSearch 规范的代码，那么支持 OpenSearch 功能的浏览器就能够进行快捷搜索。
 比如，Chrome 浏览器地址栏输入 github，再按 tab 键即可输入搜索内容。
 
 ![search github](search-github.png)
 
-## 如何为你的网站添加 Opensearch
+## 如何为你的网站添加 OpenSearch
 
 ### 1. 确认网站具有搜索功能
 
@@ -42,4 +42,4 @@ http://doc.tinysou.com/search.html#tsq={searchTerms}&tsp=0
 <link type="application/opensearchdescription+xml" href="opensearch.xml" title="Tinysou Doc" rel="search" />
 ```
 
-按照上面三步，网站就成功添加了 Opensearch 功能。
+按照上面三步，网站就成功添加了 OpenSearch 功能。
