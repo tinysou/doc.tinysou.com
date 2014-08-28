@@ -13,7 +13,7 @@ title: 自定义搜索样式
 
 安装微搜索搜索框时，可以为 `input` 元素添加 `ts-search-input` CSS class来覆盖默认的样式。
 
-```
+```html
 <form>
   <input type="text" id="ts-search-input" class="ts-searching-input" />
 </form>
@@ -23,7 +23,7 @@ title: 自定义搜索样式
 
 你可以随意定制搜索框的样式。例如：
 
-```
+```css
 body form input.ts-search-input {
   color: green;
   font-weight: bold;
@@ -34,7 +34,7 @@ body form input.ts-search-input {
 
 定制自动补全下拉框的样式，需覆盖 `.tinysou-widget .autocomplete` 的默认样式。
 
-```
+```css
 /* 改变搜索结果字体颜色 */
 .tinysou-widget .autocomplete ul li p.title {
   color: red;
@@ -58,7 +58,7 @@ body form input.ts-search-input {
 
 默认情况下，搜索结果链接的颜色是你网站的默认链接样式。如果希望改变默认的样式，需要为 `.st-result a` 添加样式。
 
-```
+```css
 .ts-result a {
   color: #C0242D;
 }
@@ -75,7 +75,7 @@ body form input.ts-search-input {
 
 如果希望改变搜索结果中匹配内容的高亮样式，需覆盖 `em` 标签的默认样式。
 
-```
+```css
 .ts-snippet em {
   font-weight: bold;
   font-style: normal;
@@ -88,7 +88,7 @@ body form input.ts-search-input {
 
 你也可以改变搜索结果的字体样式，通过覆盖 `ts-result` class的默认样式实现。
 
-```
+```css
 .ts-result {
   font-family: 'Comic Sans MS';
 }
