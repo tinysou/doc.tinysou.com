@@ -38,7 +38,7 @@ http://doc.tinysou.com/search.html#tsq={searchTerms}&tsp=0
 
 在 HTML 的 head 标签中添加如下代码。
 
-```
+```html
 <link type="application/opensearchdescription+xml" href="opensearch.xml" title="Tinysou Doc" rel="search" />
 ```
 
