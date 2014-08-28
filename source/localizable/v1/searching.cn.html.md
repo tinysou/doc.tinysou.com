@@ -9,7 +9,7 @@ title: 搜索 API
 
 搜索 API，均需要提供 `auth_token` 以通过权限验证。验证方式请参考[权限验证][auth]一节。
 
-搜索 API 每个 endpoint 均支持 `GET` 和 `POST` 两种 HTTP 动词。其中 `GET` 接受 `url 编码`的参数， `POST` 接受 `json 编码`的参数。
+搜索 API 的每个 endpoint 均支持 `GET` 和 `POST` 两种 HTTP 动词。其中 `GET` 接受 `url 编码`的参数， `POST` 接受 `json 编码`的参数。
 由于`url 编码`存在一定的局限性或者不确定性，当需要使用复杂的参数时，我们推荐使用 `POST` 的请求方式。
 
 ## Endpoint
@@ -40,8 +40,8 @@ POST /engines/:engine_name/search
 | ------ | ------ | ------------------------------------------------------ |
 | q   | string | 待搜索的内容。**必需**。 |
 | c   | string | 在 [Endpoint 2][endpoint2]中，指定需要搜索的多个 `collection`。在 [Endpoint 2][endpoint2] 中**必需**，在 [Endpoint 1][endpoint1] 中**无效**。 |
-| page   | number | 分页参数。 |
-| per_page   | number | 分页参数。 |
+| page   | number | 分页参数。**可选** |
+| per_page   | number | 分页参数。**可选** |
 | search_fields   | array(of string) | 需要被搜索的 `field`。**默认值**：所有`string`和`text`类型的`field`。**可选** |
 | fetch_fields   | array(of string) | 搜索结果中，`document` 需要包含的 `field`。 **默认值**：所有`field`。**可选** |
 | sort   | hash | 排序方式。 **可选** |
@@ -52,7 +52,7 @@ POST /engines/:engine_name/search
 
 ### `c`
 
-以','分隔多个`collection`的`name`。例如：`"posts,comments"`表示：搜索"posts","comments"两个`collection`。
+以','分隔多个`collection`的`name`。例如：`"post,comment"`表示：搜索"posts","comments"两个`collection`。
 
 ### `search_fields`
 
@@ -79,7 +79,9 @@ POST /engines/:engine_name/search
 
 表示按照 'price' 升序(从小到大)排序，当 'price' 是个 `array` 时，取平均值作为排序依据。
 
-`mode` 用来指定，当需要用来排序的 `field` 的值是 `array` 时，如何处理。`mode` 的可选项包括：`min`，`max`，`sum`，`avg`。
+`order` 用来指定排序方式；`order` 的可选项包括：`asc` 和 `desc`。
+
+`mode` 用来指定，当需要用来排序的 `field` 的值是 `array` 时，如何处理。`mode` 的可选项包括：`min`，`max`，`sum` 和 `avg`。
 
 可以用来排序的 `field` 类型包括：`enum`，`integer`，`float`，`date`。
 
