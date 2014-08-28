@@ -9,7 +9,7 @@ title: 搜索 API
 
 搜索 API，均需要提供 `auth_token` 以通过权限验证。验证方式请参考[权限验证][auth]一节。
 
-搜索 API 的每个 endpoint 均支持 `GET` 和 `POST` 两种 HTTP 动词。其中 `GET` 接受 `url 编码`的参数， `POST` 接受 `json 编码`的参数。
+搜索 API 的每个 endpoint 均支持 `GET` 和 `POST` 两种 HTTP 请求方法。其中 `GET` 接受 `url 编码`的参数， `POST` 接受 `json 编码`的参数。
 由于`url 编码`存在一定的局限性或者不确定性，当需要使用复杂的参数时，我们推荐使用 `POST` 的请求方式。
 
 ## Endpoint
@@ -40,8 +40,8 @@ POST /engines/:engine_name/search
 | ------ | ------ | ------------------------------------------------------ |
 | q   | string | 待搜索的内容。**必需**。 |
 | c   | string | 在 [Endpoint 2][endpoint2]中，指定需要搜索的多个 `collection`。在 [Endpoint 2][endpoint2] 中**必需**，在 [Endpoint 1][endpoint1] 中**无效**。 |
-| page   | number | 分页参数。**可选** |
-| per_page   | number | 分页参数。**可选** |
+| page   | number | 分页参数，指定返回结果的起始页数，默认从第 0 页开始。**可选** |
+| per_page   | number | 分页参数，指定每页显示条目的数据量，默认每页20条。**可选** |
 | search_fields   | array(of string) | 需要被搜索的 `field`。**默认值**：所有`string`和`text`类型的`field`。**可选** |
 | fetch_fields   | array(of string) | 搜索结果中，`document` 需要包含的 `field`。 **默认值**：所有`field`。**可选** |
 | sort   | hash | 排序方式。 **可选** |
