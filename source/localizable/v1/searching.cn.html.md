@@ -43,7 +43,7 @@ POST /engines/:engine_name/search
 | page   | number | 分页参数，指定返回结果的起始页数，默认从第 0 页开始。**可选** |
 | per_page   | number | 分页参数，指定每页显示条目的数据量，默认每页20条。**可选** |
 | search_fields   | array(of string) | 需要被搜索的`field`。**默认值**：所有`string`和`text`类型的`field`。**可选** |
-| fetch_fields   | array(of string) | 搜索结果中，`document` 需要包含的`field`。 **默认值**：所有`field`。**可选** |
+| fetch_fields   | array(of string) | 搜索结果中，`document`需要包含的`field`。 **默认值**：所有`field`。**可选** |
 | sort   | hash | 排序方式。 **可选** |
 
 ### `q`
@@ -56,8 +56,8 @@ POST /engines/:engine_name/search
 
 ### `search_fields`
 
-默认情况下，会对`document`的所有`string`和`text`类型的`field`进行搜索。如果想只搜索特定的`field`，可以利用`search_fields` 进行指定。例如：
-`["title", "body"]` 表示只搜索每个`document`的'title', 'body'两个`field`。
+默认情况下，会对`document`的所有`string`和`text`类型的`field`进行搜索。如果想只搜索特定的`field`，可以利用`search_fields`进行指定。例如：
+`["title", "body"]`表示只搜索每个`document`的'title', 'body'两个`field`。
 
 可以被搜索的`field`类型包括：`string`，`text`，`enum`，`integer`，`float`。
 
@@ -81,9 +81,9 @@ POST /engines/:engine_name/search
 
 `order`用来指定排序方式；`order`的可选项包括：`asc`和`desc`。
 
-`mode` 用来指定，当需要用来排序的`field`的值是`array`时，如何处理。`mode`的可选项包括：`min`，`max`，`sum`和`avg`。
+`mode`用来指定，当需要用来排序的`field`的值是`array`时，如何处理。`mode`的可选项包括：`min`，`max`，`sum`和`avg`。
 
-可以用来排序的 `field` 类型包括：`enum`，`integer`，`float`和`date`。
+可以用来排序的 `field`类型包括：`enum`，`integer`，`float`和`date`。
 
 ## 结果
 
@@ -122,7 +122,7 @@ POST /engines/:engine_name/search
 
 ```json
 {
-  "collection": "post",
+  "collection": "posts",
   "score": 0.048643537,
   "highlight": {
       "body": [
