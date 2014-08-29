@@ -84,11 +84,11 @@ POST /engines/:engine_name/search
 
 例如：
 
-`id` 为 '53217e5de'或'53238ac3de' 的 `document`
+`id` 为 "53217e5de"或"53238ac3de" 的 `document`
 
 ```json
 {
-  "ids": ['53217e5de', '53238ac3de']
+  "ids": ["53217e5de", "53238ac3de"]
 }
 ```
 
