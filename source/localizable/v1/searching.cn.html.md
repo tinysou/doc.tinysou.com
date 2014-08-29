@@ -44,6 +44,7 @@ POST /engines/:engine_name/search
 | per_page   | number | 分页参数，指定每页显示条目的数据量，默认每页20条。**可选** |
 | search_fields   | array(of string) | 需要被搜索的`field`。**默认值**：所有`string`和`text`类型的`field`。**可选** |
 | fetch_fields   | array(of string) | 搜索结果中，`document`需要包含的`field`。 **默认值**：所有`field`。**可选** |
+| filter | hash | 过滤器。**可选** |
 | sort   | hash | 排序方式。 **可选** |
 
 ### `q`
@@ -69,9 +70,139 @@ POST /engines/:engine_name/search
 
 默认情况下，搜索结果中的每个`document`，会包含所有`field`。如果只需要每个返回的`document`包含特定的`field`(例如是出于带宽的考虑)，可以利用`fetch_fields`参数来进行指定。例如`["title", "url"]`表示返回结果中，每个`document`只包含'title', 'url'两个`field`。
 
+### `filter`
+
+可以通过`filter`参数来限制搜索的范围。微搜索搜索提供多种内置 `filter`，`filter`参数的值就是这些 `filter` 中的一个或多个的组合。
+
+所谓 `filter` 就是可以对一个 `document` 进行判断，得出 '是' 或 '否' 的结论，当结论为 '是' 时，该 `document` 就在搜索范围之内，否则便不在搜索范围之内。
+
+内置的 `filter` 包括：
+
+#### `match` filter
+
+根据特定的值进行过滤。
+
+例如：
+
+`field` "price" 值为 `10` 的 `document`
+
+```json
+{
+  "match": {
+    "field": "price",
+    "value": 10
+  }
+}
+```
+
+`field` "last_name" 值为 `"Zhang"` 的 `document`
+
+```json
+{
+  "match": {
+    "field": "last_name",
+    "value": "Zhang"
+  }
+}
+```
+
+#### `in` filter
+
+根据特定的一组值进行过滤。
+
+例如：
+
+`field` "tags" 的值在 `["red","yellow"]`中的 `document`
+
+```json
+{
+  "in": {
+    "field": "tags",
+    "value": ["red", "yellow"]
+  }
+}
+```
+
+`field` "age" 的值在 `[10, 20]`中的 `document`
+
+```json
+{
+  "in": {
+    "field": "age",
+    "value": [10, 20]
+  }
+}
+```
+
+#### `range` filter
+
+根据值所在的范围进行过滤。
+
+例如：
+
+`field` "price" 的值大于 10.5，小于或等于15.2 的 `document`
+
+```json
+{
+  "range": {
+    "field": "price",
+    "gt": 10.5,
+    "lte": 15.2
+  }
+}
+```
+
+`range` filter 接受的范围参数包括 `gt`, `gte`, `lt` 和 `lte`。
+
+#### `or` filter
+
+可以接多个其他过滤器，这些过滤器中只要满足一个，结果即为 "是"。
+
+例如：
+
+"other_filter1", "other_filter2" 分别是 `range`, `in` 过滤器。无论满足 "other_filter1" 还是 "other_filter2"，结果都为 "是"。
+
+```json
+{
+  "or": [
+    other_filter1,
+    other_filter2
+  ]
+}
+```
+
+#### `and` filter
+
+可以接多个其他过滤器，这些过滤器中必需都满足，结果才为 "是"。
+
+例如：
+
+"other_filter1", "other_filter2" 分别是 `range`, `in` 过滤器。必需既满足 "other_filter1" 又满足 "other_filter2"，结果才为 "是"。
+
+```json
+{
+  "and": [
+    other_filter1,
+    other_filter2
+  ]
+}
+```
+
+#### `not` filter
+
+可接一个其他过滤器，结果与这个过滤器的结果相反。
+
+例如：
+
+```json
+{
+  "not": other_filter
+}
+```
+
 ### `sort`
 
-默认情况下，根据搜索结果中每个`document`的[score][score]，对搜索结果进行排序。如果你需要按照特定`field`进行排序，可通过`sort`参数实现。例如：
+默认情况下，根据搜索结果中每个`document`的 [score][score]，对搜索结果进行排序。如果你需要按照特定`field`进行排序，可通过`sort`参数实现。例如：
 
 ```
 {
