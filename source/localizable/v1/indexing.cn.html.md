@@ -7,7 +7,7 @@ title: 索引 API
 
 ## 总述
 
-索引 API，均需要提供 `auth_token` 以通过权限验证。验证方式请参考[权限验证][auth]一节。
+索引 API，均需要提供`auth_token`以通过权限验证。验证方式请参考[权限验证][auth]一节。
 
 ## Engine
 
@@ -369,11 +369,11 @@ POST /engines/:engine_name/collections/:collection_name/documents
 
 #### 参数
 
-> 创建 `document` 的参数遵循 `collection` 的 `field_types` 定义。
+> 创建`document`的参数遵循`collection`的`field_types`定义。
 
-> 参数名为 `field_types` 中的 `key`, 参数值类型与 `field_types` 中的 `value` 一致。当参数值为 `array` 时，保证 `array` 的每个元素与 `field_types` 中的 `value` 一致。
+> 参数名为`field_types`中的`key`, 参数值类型与`field_types`中的`value`一致。当参数值为`array`时，保证`array`的每个元素与`field_types`中的`value`一致。
 
-> 关于 `field_types` 具体内容可参照 [Field Types][field_types] 一节。
+> 关于`field_types`具体内容可参照 [Field Types][field_types] 一节。
 
 #### 示例
 
@@ -451,8 +451,8 @@ Status: 200 OK
 PUT /engines/:engine_name/collections/:collection_name/documents/:document_id
 ```
 
-当 `id` 为 ':document\_id' 的 `document` 不存在时，会创建一个 `id` 值为 ':document\_id' 的 `document`；
-否则会更新 `id` 为 ':document\_id' 的 `document`。
+当`id`为 ':document\_id' 的`document`不存在时，会创建一个`id`值为 ':document\_id' 的`document`；
+否则会更新`id`为 ':document\_id' 的`document`。
 
 即一次 ‘Upsert’。
 
