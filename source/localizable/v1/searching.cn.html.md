@@ -7,10 +7,10 @@ title: 搜索 API
 
 ## 总述
 
-搜索 API，均需要提供 `auth_token` 以通过权限验证。验证方式请参考[权限验证][auth]一节。
+搜索 API，均需要提供`auth_token`以通过权限验证。验证方式请参考[权限验证][auth]一节。
 
-搜索 API 的每个 endpoint 均支持 `GET` 和 `POST` 两种 HTTP 请求方法。其中 `GET` 接受 `url 编码`的参数， `POST` 接受 `json 编码`的参数。
-由于`url 编码`存在一定的局限性或者不确定性，当需要使用复杂的参数时，我们推荐使用 `POST` 的请求方式。
+搜索 API 的每个 endpoint 均支持`GET`和`POST`两种 HTTP 请求方法。其中`GET`接受`url 编码`的参数，`POST` 接受`json 编码`的参数。
+由于`url 编码`存在一定的局限性或者不确定性，当需要使用复杂的参数时，我们推荐使用`POST`的请求方式。
 
 ## Endpoint
 
@@ -39,11 +39,11 @@ POST /engines/:engine_name/search
 | 名称    | 类型    | 说明 |
 | ------ | ------ | ------------------------------------------------------ |
 | q   | string | 待搜索的内容。**必需**。 |
-| c   | string | 在 [Endpoint 2][endpoint2]中，指定需要搜索的多个 `collection`。在 [Endpoint 2][endpoint2] 中**必需**，在 [Endpoint 1][endpoint1] 中**无效**。 |
+| c   | string | 在 [Endpoint 2][endpoint2]中，指定需要搜索的多个`collection`。在 [Endpoint 2][endpoint2] 中**必需**，在 [Endpoint 1][endpoint1] 中**无效**。 |
 | page   | number | 分页参数，指定返回结果的起始页数，默认从第 0 页开始。**可选** |
 | per_page   | number | 分页参数，指定每页显示条目的数据量，默认每页20条。**可选** |
-| search_fields   | array(of string) | 需要被搜索的 `field`。**默认值**：所有`string`和`text`类型的`field`。**可选** |
-| fetch_fields   | array(of string) | 搜索结果中，`document` 需要包含的 `field`。 **默认值**：所有`field`。**可选** |
+| search_fields   | array(of string) | 需要被搜索的`field`。**默认值**：所有`string`和`text`类型的`field`。**可选** |
+| fetch_fields   | array(of string) | 搜索结果中，`document` 需要包含的`field`。 **默认值**：所有`field`。**可选** |
 | sort   | hash | 排序方式。 **可选** |
 
 ### `q`
@@ -52,22 +52,22 @@ POST /engines/:engine_name/search
 
 ### `c`
 
-以','分隔多个`collection`的`name`。例如：`"post,comment"`表示：搜索"posts","comments"两个`collection`。
+以','分隔多个`collection`的`name`。例如：`"posts,comments"`表示：搜索"posts","comments"两个`collection`。
 
 ### `search_fields`
 
-默认情况下，会对 `document` 的所有`string` 和 `text` 类型的 `field` 进行搜索。如果想只搜索特定的 `field`，可以利用 `search_fields` 进行指定。例如：
-`["title", "body"]` 表示只搜索每个 `document` 的 'title', 'body' 两个 `field`。
+默认情况下，会对`document`的所有`string`和`text`类型的`field`进行搜索。如果想只搜索特定的`field`，可以利用`search_fields` 进行指定。例如：
+`["title", "body"]` 表示只搜索每个`document`的'title', 'body'两个`field`。
 
-可以被搜索的 `field` 类型包括：`string`，`text`，`enum`，`integer`，`float`。
+可以被搜索的`field`类型包括：`string`，`text`，`enum`，`integer`，`float`。
 
 ### `fetch_fields`
 
-默认情况下，搜索结果中的每个`document`，会包含所有`field`。如果只需要每个返回的`document`包含特定的 `field` (例如是出于带宽的考虑)，可以利用 `fetch_fields` 参数来进行指定。例如 `["title", "url"]` 表示返回结果中，每个 `document` 只包含 'title', 'url' 两个 `field`。
+默认情况下，搜索结果中的每个`document`，会包含所有`field`。如果只需要每个返回的`document`包含特定的`field`(例如是出于带宽的考虑)，可以利用`fetch_fields`参数来进行指定。例如`["title", "url"]`表示返回结果中，每个`document`只包含'title', 'url'两个`field`。
 
 ### `sort`
 
-默认情况下，根据搜索结果中每个`document`的[score][score]，对搜索结果进行排序。如果你需要按照特定 `field` 进行排序，可通过 `sort` 参数实现。例如：
+默认情况下，根据搜索结果中每个`document`的[score][score]，对搜索结果进行排序。如果你需要按照特定`field`进行排序，可通过`sort`参数实现。例如：
 
 ```
 {
@@ -77,13 +77,13 @@ POST /engines/:engine_name/search
 }
 ```
 
-表示按照 'price' 升序(从小到大)排序，当 'price' 是个 `array` 时，取平均值作为排序依据。
+表示按照'price'升序(从小到大)排序，当'price'是个`array`时，取平均值作为排序依据。
 
-`order` 用来指定排序方式；`order` 的可选项包括：`asc` 和 `desc`。
+`order`用来指定排序方式；`order`的可选项包括：`asc`和`desc`。
 
-`mode` 用来指定，当需要用来排序的 `field` 的值是 `array` 时，如何处理。`mode` 的可选项包括：`min`，`max`，`sum` 和 `avg`。
+`mode` 用来指定，当需要用来排序的`field`的值是`array`时，如何处理。`mode`的可选项包括：`min`，`max`，`sum`和`avg`。
 
-可以用来排序的 `field` 类型包括：`enum`，`integer`，`float`，`date`。
+可以用来排序的 `field` 类型包括：`enum`，`integer`，`float`和`date`。
 
 ## 结果
 
@@ -105,11 +105,11 @@ POST /engines/:engine_name/search
 | page   | number | 本次搜索的 `page` 参数值。例如：`1`。 |
 | per_page | number | 本次搜索的 `per_page` 参数值。例如：`10`。 |
 | total | number | 搜索结果的总数。例如：`19`。 |
-| max_score | number | 搜索结果中，`score` 的最大值。例如：`1.3830765`。 |
+| max_score | number | 搜索结果中，`score`的最大值。例如：`1.3830765`。 |
 
 ### records
 
-`records` 的每个元素是一个`document`，由如下内容组成：
+`records`的每个元素是一个`document`，由如下内容组成：
 
 | 名称    | 类型    | 说明 |
 | ------ | ------ | ------------------------------------------------------ |
@@ -148,7 +148,7 @@ POST /engines/:engine_name/search
 
 ### errors
 
-显示相关错误信息，例如 `search_fields` 指定了不存在的 `field`等。
+显示相关错误信息，例如`search_fields`指定了不存在的 `field`等。
 
 例如：
 
