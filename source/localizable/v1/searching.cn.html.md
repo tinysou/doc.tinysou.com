@@ -78,6 +78,20 @@ POST /engines/:engine_name/search
 
 内置的 `filter` 包括：
 
+#### * `ids` filter
+
+根据特定的`id`进行过滤。
+
+例如：
+
+`id` 为 '53217e5de'或'53238ac3de' 的 `document`
+
+```json
+{
+  "ids": ['53217e5de', '53238ac3de']
+}
+```
+
 #### * `match` filter
 
 根据特定的值进行过滤。
