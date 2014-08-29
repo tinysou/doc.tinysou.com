@@ -24,7 +24,7 @@ GET /engines/:engine_name/collections/:collection_name/search
 POST /engines/:engine_name/collections/:collection_name/search
 ```
 
-### 2.搜索多个`collection`
+### 2.跨`collection`混合搜索
 
 ```
 GET /engines/:engine_name/search
@@ -39,7 +39,7 @@ POST /engines/:engine_name/search
 | 名称    | 类型    | 说明 |
 | ------ | ------ | ------------------------------------------------------ |
 | q   | string | 待搜索的内容。**必需**。 |
-| c   | string | 在 [Endpoint 2][endpoint2]中，指定需要搜索的多个`collection`。在 [Endpoint 2][endpoint2] 中**必需**，在 [Endpoint 1][endpoint1] 中**无效**。 |
+| c   | string | 在 [Endpoint 2][endpoint2]中，指定需要混合搜索的多个`collection`。在 [Endpoint 2][endpoint2] 中**必需**，在 [Endpoint 1][endpoint1] 中**无效**。 |
 | page   | number | 分页参数，指定返回结果的起始页数，默认从第 0 页开始。**可选** |
 | per_page   | number | 分页参数，指定每页显示条目的数据量，默认每页20条。**可选** |
 | search_fields   | array(of string) | 需要被搜索的`field`。**默认值**：所有`string`和`text`类型的`field`。**可选** |
@@ -53,6 +53,10 @@ POST /engines/:engine_name/search
 ### `c`
 
 以','分隔多个`collection`的`name`。例如：`"posts,comments"`表示：搜索"posts","comments"两个`collection`。
+
+> **注意**
+>
+> 当`c`指定了多个`collection`时，所有的其他参数都必需对这些`collection`合法。例如：当参数为 `{"c":"posts,comments","search_fields":["title","author"]}`时，`posts`和`comments`必需都存在`field`: "title","author"。
 
 ### `search_fields`
 
