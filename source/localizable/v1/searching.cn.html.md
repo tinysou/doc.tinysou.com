@@ -14,7 +14,7 @@ title: 搜索 API
 
 ## Endpoint
 
-### 1.搜索单个 `collection`
+### 1.搜索单个`collection`
 
 ```
 GET /engines/:engine_name/collections/:collection_name/search
@@ -24,7 +24,7 @@ GET /engines/:engine_name/collections/:collection_name/search
 POST /engines/:engine_name/collections/:collection_name/search
 ```
 
-### 2.搜索多个 `collection`
+### 2.搜索多个`collection`
 
 ```
 GET /engines/:engine_name/search
