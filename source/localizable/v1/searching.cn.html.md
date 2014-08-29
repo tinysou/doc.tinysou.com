@@ -78,7 +78,7 @@ POST /engines/:engine_name/search
 
 内置的 `filter` 包括：
 
-#### `match` filter
+#### * `match` filter
 
 根据特定的值进行过滤。
 
@@ -106,7 +106,7 @@ POST /engines/:engine_name/search
 }
 ```
 
-#### `in` filter
+#### * `in` filter
 
 根据特定的一组值进行过滤。
 
@@ -134,7 +134,7 @@ POST /engines/:engine_name/search
 }
 ```
 
-#### `range` filter
+#### * `range` filter
 
 根据值所在的范围进行过滤。
 
@@ -154,7 +154,7 @@ POST /engines/:engine_name/search
 
 `range` filter 接受的范围参数包括 `gt`, `gte`, `lt` 和 `lte`。
 
-#### `or` filter
+#### * `or` filter
 
 可以接多个其他过滤器，这些过滤器中只要满足一个，结果即为 "是"。
 
@@ -171,7 +171,7 @@ POST /engines/:engine_name/search
 }
 ```
 
-#### `and` filter
+#### * `and` filter
 
 可以接多个其他过滤器，这些过滤器中必需都满足，结果才为 "是"。
 
@@ -188,7 +188,7 @@ POST /engines/:engine_name/search
 }
 ```
 
-#### `not` filter
+#### * `not` filter
 
 可接一个其他过滤器，结果与这个过滤器的结果相反。
 
