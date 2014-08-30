@@ -150,7 +150,7 @@ POST /engines/:engine_name/search
 
 #### * `range` filter
 
-根据值所在的范围进行过滤。
+根据值所在的范围进行过滤。`field`类型必需为`integer`,`float`或`date`。
 
 例如：
 
@@ -160,13 +160,11 @@ POST /engines/:engine_name/search
 {
   "range": {
     "field": "price",
-    "gt": 10.5,
-    "lte": 15.2
+    "from": 10.5,
+    "to": 15.2
   }
 }
 ```
-
-`range` filter 接受的范围参数包括 `gt`, `gte`, `lt` 和 `lte`。
 
 #### * `or` filter
 
