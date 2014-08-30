@@ -1,10 +1,3 @@
----
-layout: 
-section: autocomplete
-toc: article
-title: 自动补全 API
----
-
 ## 总述
 
 本 SDK 提供微搜索API的 Node.js 封装。直接使用本SDK能够帮助开发者方便快捷地使用微搜索的各项功能。本 SDK 的源码托管在 github， 可前往查看[最新版本][github]。源码同时附带 demo，方便用户学习使用。
