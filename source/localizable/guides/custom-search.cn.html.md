@@ -13,7 +13,8 @@ title: 使用 jQuery 定制微搜索搜索结果
 
 ```javascript
 var option = {
-  engineKey: '97eaafba26b04d3cdeb9'
+  engineKey: '97eaafba26b04d3cdeb9',
+  searchInputElement: '#search-input'
 };
 (function(w,d,t,u,n,s,e){
   s = d.createElement(t);
@@ -28,7 +29,7 @@ var option = {
 _ts(option);
 ```
 
-其中 `engineKey` 为一个配置选项，之后的匿名函数会加载搜索插件需要的文件。tinysouSearch 还包含众多其他的配置选项，例如`perPage`, `sort`等等。
+其中 `engineKey` 为一个配置选项，之后的匿名函数会加载搜索插件需要的文件。tinysouSearch 还包含众多其他的配置选项，例如`perPage`，`sort`等等。不指定`searchInputElement`，默认值为`#ts-search-input`，如果你想使用别的`id`，可以通过指定`searchInputElement`。
 
 下文中将为大家介绍几个主要的选项：
 
