@@ -171,10 +171,10 @@ tinysou.documents.create('blog', 'posts', {
 
 #### 获取一个 `document`
 
-与`engine`和`collection`不同，`document`只能通过唯一的'document_id'来进行访问。在 'blog' 中的 'posts' 里，依据 'document_id' 获取一个`document`:
+与`engine`和`collection`不同，`document`只能通过唯一的'documentId'来进行访问。在 'blog' 中的 'posts' 里，依据 documentId 获取一个`document`:
 
 ```javascript
-tinysou.documents.get('blog', 'post', 'document_id', function(err, res) {
+tinysou.documents.get('blog', 'post', documentId, function(err, res) {
   console.log(res);
 });
 ```
@@ -185,7 +185,7 @@ tinysou.documents.get('blog', 'post', 'document_id', function(err, res) {
 在 'blog' 中的 'posts' 里更新一个 `document`:
 
 ```javascript
-tinysou.documents.update('blog', 'post', 'document_id', {
+tinysou.documents.update('blog', 'post', documentId, {
   title: 'My First Post',
   tags: ['news'],
   author: 'Author',
@@ -201,7 +201,7 @@ tinysou.documents.update('blog', 'post', 'document_id', {
 在 'blog' 中的 'posts' 里删除一个 `document`:
 
 ```javascript
-tinysou.documents.delete('blog', 'post', 'document_id', function(err, res) {
+tinysou.documents.delete('blog', 'post', documentId, function(err, res) {
   console.log(res);
 });
 ```
