@@ -333,6 +333,13 @@ Status: 204 No Content
 GET /engines/:engine_name/collections/:collection_name/documents
 ```
 
+####参数
+
+| 名称    | 类型    | 说明 |
+| ids   | array(of string) | `document` `id`的列表。当指定`ids`后，只罗列的`id`在此列表中的`document`。**可选** |
+| page   | number | 分页参数，指定返回结果的起始页数，默认从第 0 页开始。**可选** |
+| per_page   | number | 分页参数，指定每页显示条目的数据量，默认每页20条。**可选** |
+
 ####示例
 
 > 请求
@@ -522,7 +529,232 @@ curl -XDELETE 'http://api.tinysou.com/v1/engines/demo/collections/post/documents
 Status: 204 No Content
 ```
 
+## 基于爬虫的 Engine
+
+如果你不想通过 API 创建`document`，你可以为你的`engine`创建`domain`。每个`domain`包含一个起始`url`。微搜索的爬虫系统会根据这个起始`url`自动爬取这个`domain`的网页，并为这些网页创建对应的`document`。
+
+关于爬虫规则的详细规则，请参见[crawler][crawler]
+
+### 罗列 Domain
+
+```
+GET /engines/:engine_name/domains
+```
+
+####示例
+
+> 请求
+
+```
+curl -H "Authorization: token YOUR_AUTH_TOKEN" 'http://api.tinysou.com/v1/engines/demo/domains'
+```
+
+> 响应
+
+```
+Status: 200 OK
+```
+
+```json
+[
+  {
+    "id": "53e5b3423163610029010000",
+    "url": "http://tinysou.com",
+    "white_list": [
+      "http://blog.tinysou.com/cn/",
+      "http://doc.tinysou.com/",
+      "http://tinysou.com/"
+    ],
+    "black_list": [
+      "http://blog.tinysou.com/cn/tags/",
+      "http://blog.tinysou.com/cn/calendar/"
+    ]
+  }
+]
+```
+
+### 创建一个 Domain
+
+```
+POST /engines/:engine_name/domains
+```
+
+#### 参数
+
+| 名称    | 类型    | 说明 |
+| ------ | ------ | ------------------------------------------------------ |
+| url   | string | 起始`url`。例如：'http://doc.tinysou.com'。**必需** |
+| white_list   | array(of string) | 索引白名单。白名单中的每条规则由正则表达式描述。当白名单不为空时，只有网址符合白名单规则的网页才会被索引。**可选** |
+| black_list   | array(of string) | 索引黑名单。黑名单中的每条规则由正则表达式描述。当黑名单不为空时，网址符合黑名单规则的网页不会被索引。**可选** |
+
+> 注意：当白名单，黑名单同时存在时，先应用白名单规则，再应用黑名单规则。
+
+#### 示例
+
+> 请求
+
+```
+curl -XPOST 'http://api.tinysou.com/v1/engines/demo/domains' \
+  -H "Authorization: token YOUR_AUTH_TOKEN" \
+  -d '{
+        "url": "http://tinysou.com",
+        "white_list": [
+            "http://blog.tinysou.com/cn/",
+            "http://doc.tinysou.com/",
+            "http://tinysou.com/"
+        ],
+        "black_list": [
+            "http://blog.tinysou.com/cn/tags/",
+            "http://blog.tinysou.com/cn/calendar/"
+        ]
+      }'
+```
+
+> 响应
+
+```
+Status: 201 OK
+Location: http://api.tinysou.com/v1/engines/demo/domains/53e5b3423163610029010000
+```
+
+```json
+{
+  "id": "53e5b3423163610029010000",
+  "url": "http://tinysou.com",
+  "white_list": [
+    "http://blog.tinysou.com/cn/",
+    "http://doc.tinysou.com/",
+    "http://tinysou.com/"
+  ],
+  "black_list": [
+    "http://blog.tinysou.com/cn/tags/",
+    "http://blog.tinysou.com/cn/calendar/"
+  ]
+}
+```
+
+### 获取一个 Domain
+
+```
+GET /engines/:engine_name/domains/:domain_id
+```
+
+####示例
+
+> 请求
+
+```
+curl -H "Authorization: token YOUR_AUTH_TOKEN" 'http://api.tinysou.com/v1/engines/demo/domains/53e5b3423163610029010000'
+```
+
+> 响应
+
+```
+Status: 200 OK
+```
+
+```json
+{
+  "id": "53e5b3423163610029010000",
+  "url": "http://tinysou.com",
+  "white_list": [
+    "http://blog.tinysou.com/cn/",
+    "http://doc.tinysou.com/",
+    "http://tinysou.com/"
+  ],
+  "black_list": [
+    "http://blog.tinysou.com/cn/tags/",
+    "http://blog.tinysou.com/cn/calendar/"
+  ]
+}
+```
+
+### 更新一个 Domain
+
+```
+PUT /engines/:engine_name/domains/:domain_id
+```
+
+#### 参数
+
+| 名称    | 类型    | 说明 |
+| ------ | ------ | ------------------------------------------------------ |
+| url   | string | 起始`url`。例如：'http://doc.tinysou.com'。**必需** |
+| white_list   | array(of string) | 索引白名单。白名单中的每条规则由正则表达式描述。当白名单不为空时，只有网址符合白名单规则的网页才会被索引。**可选** |
+| black_list   | array(of string) | 索引黑名单。黑名单中的每条规则由正则表达式描述。当黑名单不为空时，网址符合黑名单规则的网页不会被索引。**可选** |
+
+> 注意：当白名单，黑名单同时存在时，先应用白名单规则，再应用黑名单规则。
+
+#### 示例
+
+> 请求
+
+```
+curl -XPUT 'http://api.tinysou.com/v1/engines/demo/domains/53e5b3423163610029010000' \
+  -H "Authorization: token YOUR_AUTH_TOKEN" \
+  -d '{
+        "url": "http://tinysou.com",
+        "white_list": [
+          "http://blog.tinysou.com/cn/",
+          "http://doc.tinysou.com/",
+          "http://tinysou.com/",
+          "http://help.tinysou.com/"
+        ],
+        "black_list": [
+          "http://blog.tinysou.com/cn/tags/",
+          "http://blog.tinysou.com/cn/calendar/",
+          "http://tinysou.com/en/"
+        ]
+      }'
+```
+
+> 响应
+
+```
+Status: 200 OK
+```
+
+```json
+{
+  "id": "53e5b3423163610029010000",
+  "url": "http://tinysou.com",
+  "white_list": [
+    "http://blog.tinysou.com/cn/",
+    "http://doc.tinysou.com/",
+    "http://tinysou.com/",
+    "http://help.tinysou.com/"
+  ],
+  "black_list": [
+    "http://blog.tinysou.com/cn/tags/",
+    "http://blog.tinysou.com/cn/calendar/",
+    "http://tinysou.com/en/"
+  ]
+}
+```
+
+### 删除一个 Domain
+
+```
+DELETE /engines/:engine_name/domains/:domain_id
+```
+
+####示例
+
+> 请求
+
+```
+curl -XDELETE -H "Authorization: token YOUR_AUTH_TOKEN" 'http://api.tinysou.com/v1/engines/demo/domains/53e5b3423163610029010000'
+```
+
+> 响应
+
+```
+Status: 204 No Content
+```
+
+
 [auth]:/v1/overview.html#6-权限验证
 [field_types]:/v1/overview.html#3-Field-Types
 [upsert-a-doc]:/v1/indexing.html#4-14-创建或更新一个-Document
 [create-a-doc]:/v1/indexing.html#4-12-创建一个-Document(指定-id-方式)
+[crawler]:/crawler/overview.html
