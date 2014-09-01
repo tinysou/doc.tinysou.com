@@ -25,7 +25,7 @@ GET /engines/:engine_name/collections/:collection_name/autocomplete
 POST /engines/:engine_name/collections/:collection_name/autocomplete
 ```
 
-### 2.自动补全多个`collection`
+### 2.跨`collection`混合自动补全
 
 ```
 GET /engines/:engine_name/autocomplete

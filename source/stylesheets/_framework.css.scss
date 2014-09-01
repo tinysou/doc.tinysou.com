@@ -1125,9 +1125,9 @@ $topbar-link-bg-active-hover: $gray-bg;
 // $paragraph-text-rendering: optimizeLegibility;
 
 // We use these to style <code> tags
-// $code-color: scale-color($alert-color, $lightness: -27%);
+$code-color: scale-color(black, $lightness: -20%);
 // $code-font-family: Consolas, 'Liberation Mono', Courier, monospace;
-// $code-font-weight: bold;
+$code-font-weight: normal;
 
 // We use these to style anchors
 // $anchor-text-decoration: none;

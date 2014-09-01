@@ -25,7 +25,7 @@ http://doc.tinysou.com/search.html#tsq={searchTerms}&tsp=0
 
 在网站的根目录下，添加 xml 文件，比如 `opensearch.xml` 。
 
-```
+```xml
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
   <ShortName> Tinysou Doc</ShortName>
   <Description>Search 微搜索文档</Description>
@@ -38,7 +38,7 @@ http://doc.tinysou.com/search.html#tsq={searchTerms}&tsp=0
 
 在 HTML 的 head 标签中添加如下代码。
 
-```
+```html
 <link type="application/opensearchdescription+xml" href="opensearch.xml" title="Tinysou Doc" rel="search" />
 ```
 

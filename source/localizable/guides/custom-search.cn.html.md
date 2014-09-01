@@ -12,12 +12,24 @@ title: 使用 jQuery 定制微搜索搜索结果
 微搜索的所有搜索和自动补全行为，由 `jquery.tinysou.js` 完成，其初始化方式如下：
 
 ```javascript
-$('#ts-search-input').tinysouSearch({
-  engineKey: '97eaafba26b04d3cdeb9'
-});
+var option = {
+  engineKey: '97eaafba26b04d3cdeb9',
+  searchInputElement: '#search-input'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','http://tinysou-cdn.qiniudn.com/ts.js','_ts');
+_ts(option);
 ```
 
-其中 `engineKey` 为一个配置选项。tinysouSearch 还包含众多其他的配置选项，例如`perPage`, `sort`等等。
+其中 `engineKey` 为一个配置选项，之后的匿名函数会加载搜索插件需要的文件。tinysouSearch 还包含众多其他的配置选项，例如`perPage`，`sort`等等。不指定`searchInputElement`，默认值为`#ts-search-input`，如果你想使用别的`id`，可以通过指定`searchInputElement`。
 
 下文中将为大家介绍几个主要的选项：
 
@@ -64,10 +76,10 @@ var customRenderActFunction = function(item) {
   out = out.concat('<p class="url">' + item['document']['sections'][0] + '</p>');
   return out;
 };
-$('#ts-search-input').tinysouSearch({
+var option = {
   engineKey: '97eaafba26b04d3cdeb9',
   renderActFunction: customRenderActFunction
-});
+};
 ```
 
 ## 定制搜索的显示行为
@@ -100,10 +112,10 @@ var customRenderFunction = function(item) {
   out = out.concat('<p class="url">' + item['document']['sections'][0] + '</p>');
   return out;
 };
-$('#ts-search-input').tinysouSearch({
+var option = {
   engineKey: '97eaafba26b04d3cdeb9',
   renderFunction: customRenderFunction
-});
+};
 ```
 
 ## 定制搜索和自动补全行为
@@ -121,10 +133,10 @@ $('#ts-search-input').tinysouSearch({
 可以通过`collection`选项指定搜索的目标`collection`，可以指定多个collection，方法是多个`collection` 名之间用 ‘,’ 分隔，例如:
 
 ```
-$('#ts-search-input').tinysouSearch({
+var option = {
   engineKey: '97eaafba26b04d3cdeb9',
   collection: 'page,book'
-});
+};
 ```
 
 `collection`选项默认值为`'page'`
@@ -138,10 +150,10 @@ $('#ts-search-input').tinysouSearch({
 例如
 
 ```javascript
-$("#ts-search-input"). tinysouSearch({
-   engineKey: '97eaafba26b04d3cdeb9',
-   fetchFields: ['title', 'url', 'sections', 'body']
-});
+var option = {
+  engineKey: '97eaafba26b04d3cdeb9',
+  fetchFields: ['title', 'url', 'sections', 'body']
+};
 ```
 
 `item`变量则变为：
