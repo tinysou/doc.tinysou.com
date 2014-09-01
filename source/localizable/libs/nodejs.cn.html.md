@@ -1,12 +1,20 @@
+---
+layout: libs.cn
+section: nodejs
+toc: article
+title: Node.js 库
+---
+
+
 ## 总述
 
-本 SDK 提供微搜索API的 Node.js 封装。直接使用本SDK能够帮助开发者方便快捷地使用微搜索的各项功能。本 SDK 的源码托管在 github， 可前往查看[最新版本][github]。源码同时附带 demo，方便用户学习使用。
+Node.js 库提供微搜索API的 Node.js 封装。直接使用该库能够帮助开发者方便快捷地使用微搜索的各项功能。所有源码托管在 github， 开发者们可前往查看[最新版本][github]。源码同时附带 demo，方便用户学习使用。
 
 ## 准备
 
 ### 环境依赖
 
-本 SDK 适用于 Node.js 0.8.0 及以上版本
+本 Node.js 库适用于 Node.js 0.8.0 及以上版本，请确保你的 Node.js 的版本高于或等于 0.8.0。
 
 ### 安装
 
@@ -19,7 +27,7 @@ npm install tinysou
 
 ### auth_token
 
-使用本SDK之前，你需要有一个 auth_token 进行授权。
+使用 Node.js 库之前，你需要有一个 auth_token 进行授权。
 
 在你的 账号设置-> Auth 设置 里，你可以找到你的 auth_token；如果你没有账号，请先[注册][setup]。
 
@@ -37,7 +45,9 @@ var tinysou = new Tinysou('your_token')
 ### Engine
 
 #### 罗列`engine`
+
 罗列出你的所有`engine`：
+
 ```javascript
 tinysou.engines.list(function(err, res) {
   console.log(res);
@@ -56,6 +66,8 @@ tinysou.engines.create({
   console.log(res);
 });
 ```
+
+> 完整参数请参见 [http://doc.tinysou.com/v1/indexing.html#2-2-创建一个-Engine](/v1/indexing.html#2-2-创建一个-Engine)
 
 #### 获取一个`engine`
 
@@ -78,7 +90,7 @@ tinysou.engines.update('blog', {
   console.log(res);
 });
 ```
-只有`engine`的显示名可以被更新。如示例代码中，将原来的 'Blog' 更改为 'My Blog'。
+只有`engine`的`display_name`可以被更新。如示例代码中，将原来的 'Blog' 更改为 'My Blog'。
 
 #### 删除一个`engine`
 
@@ -104,7 +116,7 @@ tinysou.collections.list('blog', function(err, res) {
 
 #### 创建一个`collection`
 
-在 'blog' 下创建一个`collection`，名为 'posts'，在`posts`里有 'title'，'tags'，'author'，'date' 和 'body' 这些 `field`，并分别指定这些`field·的类型，如 'title' 类型为 'string' :
+在 'blog' 下创建一个`collection`，名为 'posts'。在`posts`里有 'title'，'tags'，'author'，'date' 和 'body' 这些`field`，并分别指定这些`field·的类型，如 'title' 类型为 'string' :
 
 ```javascript
 tinysou.collections.create('blog', {
@@ -120,6 +132,8 @@ tinysou.collections.create('blog', {
   console.log(res);
 });
 ```
+
+> 完整参数请参见 [http://doc.tinysou/v1/indexing.html#3-7-创建一个-Collection](http://doc.tinysou/v1/indexing.html#3-7-创建一个-Collection)
 
 #### 获取一个`collection`
 
@@ -143,7 +157,7 @@ tinysou.collections.delete('blog', 'posts', function(err, res) {
 
 ### Document
 
-#### 罗列 `document`
+#### 罗列`document`
 
 罗列出 'blog' 下、'posts'里的所有`document`
 
@@ -153,9 +167,9 @@ tinysou.documents.list('blog', 'posts', function(err, res) {
 });
 ```
 
-#### 创建一个 `document`
+#### 创建一个`document`
 
-在 'blog' 中 'posts' 里创建一个 `document`:
+在 'blog' 下的 'posts' 里创建一个`document`:
 
 ```javascript
 tinysou.documents.create('blog', 'posts', {
@@ -169,9 +183,11 @@ tinysou.documents.create('blog', 'posts', {
 });
 ```
 
-#### 获取一个 `document`
+> 完整参数请参见 [http://doc.tinysou/v1/indexing.html#4-11-创建一个-Document(自动生成-id-方式)](http://doc.tinysou/v1/indexing.html#4-11-创建一个-Document(自动生成-id-方式))
 
-与`engine`和`collection`不同，`document`只能通过唯一的'documentId'来进行访问。在 'blog' 中的 'posts' 里，依据 documentId 获取一个`document`:
+#### 获取一个`document`
+
+与`engine`和`collection`不同，`document`只能通过唯一的'documentId'来进行访问。在 'blog' 下的 'posts' 里，依据 documentId 获取一个`document`:
 
 ```javascript
 tinysou.documents.get('blog', 'post', documentId, function(err, res) {
@@ -180,9 +196,9 @@ tinysou.documents.get('blog', 'post', documentId, function(err, res) {
 ```
 
 
-#### 更新一个 `document`
+#### 更新一个`document`
 
-在 'blog' 中的 'posts' 里更新一个 `document`:
+在 'blog' 中的 'posts' 里更新一个`document`:
 
 ```javascript
 tinysou.documents.update('blog', 'post', documentId, {
@@ -196,9 +212,11 @@ tinysou.documents.update('blog', 'post', documentId, {
 });
 ```
 
-#### 删除一个 `document`
+> 完整参数请参见 [http://doc.tinysou/v1/indexing.html#4-14-创建或更新一个-Document](http://doc.tinysou/v1/indexing.html#4-14-创建或更新一个-Document)
 
-在 'blog' 中的 'posts' 里删除一个 `document`:
+#### 删除一个`document`
+
+在 'blog' 中的 'posts' 里删除一个`document`:
 
 ```javascript
 tinysou.documents.delete('blog', 'post', documentId, function(err, res) {
@@ -206,7 +224,49 @@ tinysou.documents.delete('blog', 'post', documentId, function(err, res) {
 });
 ```
 
+### 搜索
 
+在 'posts' 里搜索关键词，并让搜索结果按照 'date' 的升序排列：
+
+```javascript
+tinysou.search('blog', {
+  q: 'tinysou',
+  c: 'posts'
+  page: 0,
+  per_parge: 10,
+  sort:{
+    field: "date",
+    order: "asc",
+    mode: "avg"
+  }
+}, function(err, res) {
+  console.log(res);
+});
+```
+
+> 完整参数请参见 [http://doc.tinysou/v1/searching.html#2-2-2.搜索多个collection](http://doc.tinysou/v1/searching.html#2-2-2.搜索多个collection)
+
+### 自动补全
+
+在 'posts' 里对关键词 'tinys' 进行补全：
+
+```javascript
+tinysou.autocomplete('blog', {
+  q: 'tinys',
+  c: 'posts'
+  page: 0,
+  per_parge: 10,
+  sort:{
+    field: "date",
+    order: "asc",
+    mode: "avg"
+  }
+}, function(err, res) {
+  console.log(res);
+});
+```
+
+自动补全 API 与搜索 API 使用相同的权限验证，参数和返回格式。完整参数请参考搜索的参数。
 
 
 
@@ -215,4 +275,4 @@ tinysou.documents.delete('blog', 'post', documentId, function(err, res) {
 
 
 [github]:https://github.com/tinysou/tinysou-node
-[setup]:http://dashboard.tinysou.com/signup
+[setup]:/signup
