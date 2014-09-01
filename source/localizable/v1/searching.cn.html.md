@@ -316,6 +316,13 @@ curl -XPOST 'http://api.tinysou.com/v1/engines/blog/collections/post/search' \
   -d '{
         "q": "自定义样式",
         "fetch_fields": ["title", "sections", "url"],
+        "filter": {
+          "range": {
+            "field": "update_at",
+            "from": "2014-07-01T00:00:00Z",
+            "to": "2014-08-01T00:00:00Z"
+          }
+        },
         "sort": {
           "field": "update_at",
           "order": "desc",
