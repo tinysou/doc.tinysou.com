@@ -18,7 +18,7 @@
   %meta{:content => "on", "http-equiv" => "cleartype"}/
   %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
   %link{:type => "application/opensearchdescription+xml", :href => "opensearch.xml", :title => "微搜索", :rel => "search" }/
-  %title= data.page.title || "微搜索 文档中心"
+  %title= data.page.title ? "#{data.page.title} | 微搜索 文档中心": "微搜索 文档中心"
   = stylesheet_link_tag "application"
   = stylesheet_link_tag "http://tinysou-cdn.qiniudn.com/tinysou.min.css"
   = yield_content :stylesheets
