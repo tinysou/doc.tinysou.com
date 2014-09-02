@@ -1,0 +1,38 @@
+= wrap_layout 'cn' do
+  .row.main-content
+    .large-3.small-12.columns
+      .hide-for-small
+        .sidebar
+          %nav
+            %ul.side-nav
+              %li.heading
+                %i.fa.fa-book
+                = '库与插件'
+              %li.nav-libs-overview
+                = link_to '库与插件概述', '/libs/overview.html'
+              %li.nav-libs-nodejs
+                = link_to 'Node.js', '/libs/nodejs.html'
+    .large-9.small-12.columns
+      .right-content
+        - if content_for? :raw_content
+          = yield_content :raw_content
+        - else
+          %h1= current_page.data.title
+          %ol.toc
+          .markdown= yield
+
+  - content_for :second_nav do
+    %ul.off-canvas-list
+      %li
+        %label= '库与插件'
+      %li.nav-libs-overview
+        = link_to '库与插件概述', '/libs/overview.html'
+      %li.nav-libs-nodejs
+        = link_to 'Node.js', '/libs/nodejs.html'
+
+  - content_for :javascripts do
+    :coffee
+      $('li.nav-libs').addClass('active')
+      $("li.nav-libs-#{current_page.data.section}").addClass('active')
+
+    = partial '/layouts/toc'
