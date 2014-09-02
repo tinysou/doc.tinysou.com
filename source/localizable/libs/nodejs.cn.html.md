@@ -226,7 +226,7 @@ tinysou.documents.delete('blog', 'post', documentId, function(err, res) {
 
 ### 搜索
 
-在 'posts' 里搜索关键词'tinysou'，限制只搜索 'date' 在 '2014-07-01T00:00:00Z'之间'2014-08-01T00:00:00Z'之间的`document`，并让搜索结果按照 'date' 的升序排列：
+在 'posts' 里搜索关键词'tinysou'，限制只搜索 'date' 在 '2014-07-01T00:00:00Z' 和 '2014-08-01T00:00:00Z'之间的`document`，并让搜索结果按照 'date' 的升序排列：
 
 ```javascript
 tinysou.search('blog', {
