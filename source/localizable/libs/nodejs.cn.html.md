@@ -226,7 +226,7 @@ tinysou.documents.delete('blog', 'post', documentId, function(err, res) {
 
 ### 搜索
 
-在 'posts' 里搜索关键词，并让搜索结果按照 'date' 的升序排列：
+在 'posts' 里搜索关键词'tinysou'，限制只搜索 'date' 在 '2014-07-01T00:00:00Z'之间'2014-08-01T00:00:00Z'之间的`document`，并让搜索结果按照 'date' 的升序排列：
 
 ```javascript
 tinysou.search('blog', {
@@ -234,6 +234,13 @@ tinysou.search('blog', {
   c: 'posts'
   page: 0,
   per_parge: 10,
+  filter: {
+    range: {
+      field: "date"
+      from: "2014-07-01T00:00:00Z",
+      to: "2014-08-01T00:00:00Z"
+    }
+  },
   sort:{
     field: "date",
     order: "asc",
@@ -256,6 +263,13 @@ tinysou.autocomplete('blog', {
   c: 'posts'
   page: 0,
   per_parge: 10,
+  filter: {
+    range: {
+      field: "date"
+      from: "2014-07-01T00:00:00Z",
+      to: "2014-08-01T00:00:00Z"
+    }
+  },
   sort:{
     field: "date",
     order: "asc",
@@ -267,11 +281,6 @@ tinysou.autocomplete('blog', {
 ```
 
 自动补全 API 与搜索 API 使用相同的权限验证，参数和返回格式。完整参数请参考搜索的参数。
-
-
-
-
-
 
 
 [github]:https://github.com/tinysou/tinysou-node
