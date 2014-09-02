@@ -275,4 +275,4 @@ tinysou.autocomplete('blog', {
 
 
 [github]:https://github.com/tinysou/tinysou-node
-[setup]:/signup
+[setup]:http://dashboard.tinysou.com/signup
