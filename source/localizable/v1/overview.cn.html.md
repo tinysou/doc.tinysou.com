@@ -156,6 +156,6 @@ $ curl -H "Authorization: token YOUR_AUTH_TOKEN" http://api.tinysou.com/v1
 $ curl http://api.tinysou.com/v1?auth_token=YOUR_AUTH_TOKEN
 ```
 
-[resource_structure]:/images/resource_structure.png
+[resource_structure]:resource_structure.png
 [field_types]:/v1/overview.html#3-Field-Types
 [search_api]:/v1/searching.html

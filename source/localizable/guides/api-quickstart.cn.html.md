@@ -207,5 +207,5 @@ curl -XPOST 'http://api.tinysou.com/v1/engines/blog/collections/post/autocomplet
 }
 ```
 
-[copy_auth_token]:/images/copy_auth_token.jpg
-[copy_engine_key]:/images/copy_engine_key.png
+[copy_auth_token]:copy_auth_token.jpg
+[copy_engine_key]:copy_engine_key.png

@@ -73,7 +73,7 @@ title: 基本概念
 
 ![添加域名][add-domain]
 
-[resource_structure]:/images/resource_structure.png
-[add-domain]:/images/add-domain.png
+[resource_structure]:resource_structure.png
+[add-domain]:add-domain.png
 [field_types]:/v1/overview.html#3-Field-Types
 [search_api]:/v1/searching.html

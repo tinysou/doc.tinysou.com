@@ -45,7 +45,7 @@ var defaultRenderActFunction = function(item) {
 
 其效果如下：
 
-![default-autocomplete-display](/images/default-autocomplete-display.png)
+![default-autocomplete-display](default-autocomplete-display.png)
 
 其中`item`变量的结构如下:
 
@@ -100,7 +100,7 @@ var defaultRenderFunction = function (item) {
 
 其效果如下：
 
-![default-search-display](/images/default-search-display.png)
+![default-search-display](default-search-display.png)
 
 其中`item`变量的结构和上一节中的一致。
 
