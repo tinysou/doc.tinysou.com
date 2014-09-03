@@ -9,35 +9,22 @@ title: 分析 API
 
 分析 API，均需要提供`auth_token`以通过权限验证。验证方式请参考[权限验证][auth]一节。
 
-分析 API 的每个接口均提供两种形式：
-
-### 作用于单个 `collection`
-
-```
-GET /engines/:engine_name/collections/:collection_name/analytics/:method
-```
-
-### 作用于多个 `collection`
-
 ```
 GET /engines/:engine_name/analytics/:method
 ```
+
+`:method` 为分析类型，目前包括 "搜索", "自动补全", "搜索点击" 和 "自动补全点击"。详情请见[分析类型(:method)][analytics-method]
 
 ## 参数
 
 | 名称    | 类型    | 说明 |
 | ------ | ------ | ------------------------------------------------------ |
-| collections | string | 在 [形式 2][form2]中，指定的多个 `collection`。在 [形式 2][form2] 默认为**全部**，在 [形式 1][form1] 中**无效**。 |
 | start  | string/number | 起始时间，可以是 ISO8601 格式的字符串，也可以是 UNIX 毫秒数。 默认为 **1天前**。|
 | end    | string/number | 终止时间，可以是 ISO8601 格式的字符串，也可以是 UNIX 毫秒数。 默认为**当前时间**。|
 | interval | string/number | 分段的时间间隔，可以是 `year`，`quarter`，`month`，`week`,`day`，`hour`，`minute`，`second`，也可以是 UNIX 毫秒数。 默认为 **0**，表示不进行分段。|
 | function | string | 分析函数，可选 `count`，`top`, 默认为 **count**|
 
-### `collections`
-
-以','分隔多个`collection`的`name`。例如：`"post,comment"`表示：作用于“posts”,“comments”两个`collection`。
-
-## Endpoint
+## 分析类型(:method)
 
 ### 搜索
 
@@ -170,3 +157,4 @@ curl http://api.tinysou.com/v1/engines/blog/collections/posts/analytics/autocomp
 [form1]:/v1/analytics.html#1-1-作用于单个-collection
 [form2]:/v1/analytics.html#1-2-作用于多个-collection
 [auth]:/v1/overview.html#6-权限验证
+[analytics-method]:/v1/analytics.html#3-分析类型(:method)
