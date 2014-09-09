@@ -35,7 +35,7 @@ GET /engines/:engine_name/analytics/search
 示例
 
 ```
-curl http://api.tinysou.com/v1/engines/blog/collections/posts/analytics/search?interval=hour \
+curl http://api.tinysou.com/v1/engines/blog/analytics/search?interval=hour \
   -H 'Authorization: token YOUR_AUTH_TOKEN'
 ```
 
@@ -79,7 +79,7 @@ GET /engines/:engine_name/analytics/autocomplete
 示例
 
 ```
-curl http://api.tinysou.com/v1/engines/blog/collections/posts/analytics/autocomplete?function=top \
+curl http://api.tinysou.com/v1/engines/blog/analytics/autocomplete?function=top \
   -H 'Authorization: token YOUR_AUTH_TOKEN'
 ```
 
@@ -96,7 +96,7 @@ GET /engines/:engine_name/analytics/search_click
 示例
 
 ```
-curl http://api.tinysou.com/v1/engines/blog/collections/posts/analytics/search_click?function=top \
+curl http://api.tinysou.com/v1/engines/blog/analytics/search_click?function=top \
   -H 'Authorization: token YOUR_AUTH_TOKEN'
 ```
 
@@ -118,7 +118,7 @@ GET /engines/:engine_name/analytics/autocomplete_click
 示例
 
 ```
-curl http://api.tinysou.com/v1/engines/blog/collections/posts/analytics/autocomplete_click?interval=hour \
+curl http://api.tinysou.com/v1/engines/blog/analytics/autocomplete_click?interval=hour \
   -H 'Authorization: token YOUR_AUTH_TOKEN'
 ```
 
