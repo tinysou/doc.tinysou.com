@@ -6,9 +6,19 @@ title: 爬虫规则
 ---
 
 
+## 域名
+
+在添加网站时，如果填写的为根域名的 URL，微搜索会自动收录子域名的页面。
+
+如输入`http://tinysou.com`, 则`http://www.tinysou.com`，`http://blog.tinysou.com`，都会进行收录。
+
+如果填写的为子域名的 URL，则不会收录其他子域名。
+
+如输入`http://www.tinysou.com`，就不会收录`http://blog.tinysou.com`。
+
 ## robots.txt
 
-微搜索遵循 [robots.txt][robots]。如果你不希望微搜索爬某些页面，如 `/sample-directory` 下面的页面，只需在`robots.txt`里声明：
+微搜索遵守 [robots.txt][robots]。如果你不希望微搜索爬某些页面，如 `/sample-directory` 下面的页面，只需在`robots.txt`里声明：
 
 ```
 User-agent: Tinysoubot
