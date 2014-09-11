@@ -336,6 +336,7 @@ GET /engines/:engine_name/collections/:collection_name/documents
 ####参数
 
 | 名称    | 类型    | 说明 |
+| ------ | ------ | ------------------------------------------------------ |
 | ids   | array(of string) | `document` `id`的列表。当指定`ids`后，只罗列的`id`在此列表中的`document`。**可选** |
 | page   | number | 分页参数，指定返回结果的起始页数，默认从第 0 页开始。**可选** |
 | per_page   | number | 分页参数，指定每页显示条目的数据量，默认每页20条。**可选** |
