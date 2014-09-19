@@ -7,7 +7,7 @@ title: 指南概述
 #### [基本概念][concept]
 > 微搜索基本概念描述，包括engine, collection, document 和 crawler。
 
-#### [安装][install]
+#### [安装插件][install]
 > 安装指南。
 
 #### [自定义搜索样式][custom-styles]
