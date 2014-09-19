@@ -2,7 +2,7 @@
 layout: guides.cn
 section: install
 toc: article
-title: 安装指南
+title: 安装插件
 ---
 
 微搜索提供三种方式显示搜索结果，也可以通过自定义（高级）的方式。
