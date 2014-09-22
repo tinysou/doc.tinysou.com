@@ -210,6 +210,3 @@ client.autocomplete 'blog', q: 't', c: 'posts'
 
 [github]:https://github.com/tinysou/tinysou-ruby
 [setup]:http://dashboard.tinysou.com/signup
-
-
-
