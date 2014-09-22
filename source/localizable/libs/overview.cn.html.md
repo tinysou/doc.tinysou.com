@@ -10,5 +10,9 @@ title: 库与插件概述
 
 > Node.js 库提供微搜索API的 Node.js 封装。
 
+[Ruby][ruby]
+
+> Ruby 库提供微搜索API的 Ruby 封装。
 
 [nodejs]:/libs/nodejs.html
+[ruby]:/libs/ruby.html
