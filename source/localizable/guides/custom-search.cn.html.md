@@ -25,7 +25,7 @@ var option = {
   };
   e = d.getElementsByTagName(t)[0];
   e.parentNode.insertBefore(s, e);
-})(window,document,'script','http://tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
 _ts(option);
 ```
 
