@@ -20,7 +20,7 @@ title: 爬虫概述
 | url   | enum | 页面的 URL。|
 | sections | string | 由页面中`<h1>`，`<h2>`，`<h3>`，`<h4>`，`<h5>`和`<h6>`标签指定。 |
 | body | text | 页面中的`<body>`的文字内容。 |
-| image | text | 页面图像，由 [Open Graph][open_graph] 中的`og:image`指定。 |
+| image | enum | 页面图像，由 [Open Graph][open_graph] 中的`og:image`指定。 |
 
 支持的 Open Graph 的标签格式如下：
 
