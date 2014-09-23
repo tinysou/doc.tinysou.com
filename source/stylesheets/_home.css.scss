@@ -26,9 +26,6 @@
     img {
       width: 120px;
       padding-left: 20px;
-      &:hover {
-        opacity: 0.8;
-      }
     }
     @media #{$small-only} {
       .small-12 {
