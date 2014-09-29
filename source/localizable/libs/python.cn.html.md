@@ -1,40 +1,25 @@
 ---
 layout: libs.cn
-section: ruby
+section: python
 toc: article
-title: Ruby 库
+title: Python 库
 ---
 
 ## 总述
 
-Ruby 库提供微搜索API的 Ruby 封装。直接使用该库能够帮助开发者方便快捷地使用微搜索的各项功能。所有源码托管在 github， 开发者们可前往查看[最新版本][github]。源码同时附带 [例子][examples]，方便用户学习使用。
+Python 库提供微搜索API的 Python 封装。直接使用该库能够帮助开发者方便快捷地使用微搜索的各项功能。所有源码托管在 github， 开发者们可前往查看[最新版本][github]。源码同时附带 [例子][examples]，方便用户学习使用。
 
 ## 安装
 
-请在你的 Gemfile 里添加：
-
-```ruby
-gem 'tinysou'
 ```
-
-然后再命令行里执行
-
-```
-$ bundle
-```
-
-或者直接进行安装
-
-```
-gem install tinysou
+$ pip install tinysou
 ```
 
 ## 使用
 
-### 初始化：
-
-```ruby
-client = Tinysou::Client.new 'YOUR_TOKEN'
+```python
+import tinysou
+client = tinysou.Client('YOUR_TOKEN')
 ```
 
 ### Engine
@@ -43,16 +28,16 @@ client = Tinysou::Client.new 'YOUR_TOKEN'
 
 罗列出你的所有`engine`：
 
-```ruby
-client.engines
+```python
+client.engines.list()
 ```
 
 #### 创建`engine`
 
 创建一个名称为 'blog'，显示名为 'Blog' 的`engine`：
 
-```ruby
-client.create_engine name: 'blog', display_name: 'Blog'
+```python
+client.engines.create({'name': 'blog', 'display_name': 'Blog'})
 ```
 
 > 完整参数请参见 [http://doc.tinysou.com/v1/indexing.html#2-2-创建一个-Engine](/v1/indexing.html#2-2-创建一个-Engine)
@@ -61,24 +46,24 @@ client.create_engine name: 'blog', display_name: 'Blog'
 
 通过名称 'blog' 读取该`engine`：
 
-```ruby
-client.engine 'blog'
+```python
+client.engines.get('blog')
 ```
 
 #### 更新一个`engine`
 
 对 'blog' 进行更新：
 
-```ruby
-client.update_engine 'blog', display_name: 'My Blog'
+```python
+client.engines.update('blog', {'display_name': 'My Blog'})
 ```
 
 #### 删除一个`engine`
 
 删除名为`blog`的`engine`:
 
-```ruby
-client.destroy_engine 'blog'
+```python
+client.engines.delete('blog')
 ```
 
 ### Collection
@@ -87,22 +72,24 @@ client.destroy_engine 'blog'
 
 罗列出 'blog' 内包含的所有`collection`:
 
-```ruby
-client.collections 'blog'
+```python
+client.collections.list('blog')
 ```
 
 #### 创建一个`collection`
 
 在 'blog' 下创建一个`collection`，名为 'posts'。在`posts`里有 'title'，'tags'，'author'，'date' 和 'body' 这些`field`，并分别指定这些`field·的类型，如 'title' 类型为 'string' :
 
-```ruby
-client.create_collection 'blog', name: 'posts', field_types: {
-  title: 'string',
-  tags: 'string',
-  author: 'enum',
-  date: 'date',
-  body: 'text'
-}
+```python
+client.collections.create('blog',
+                          {'name': 'posts',
+                           'field_types': {
+                                'title': 'string',
+                                'tags': 'string',
+                                'author': 'enum',
+                                'date': 'date',
+                                'body': 'text'
+                           }})
 ```
 
 > 完整参数请参见 [http://doc.tinysou/v1/indexing.html#3-7-创建一个-Collection](http://doc.tinysou/v1/indexing.html#3-7-创建一个-Collection)
@@ -111,16 +98,16 @@ client.create_collection 'blog', name: 'posts', field_types: {
 
 返回'blog'下的 'posts'：
 
-```ruby
-client.collection 'blog', 'posts'
+```python
+client.collections.get('blog', 'posts')
 ```
 
 #### 删除一个collection
 
 删除'blog'下的 'posts'：
 
-```ruby
-client.destroy_collection 'blog', 'posts'
+```python
+client.collections.delete('blog', 'posts')
 ```
 
 ### Document
@@ -129,22 +116,22 @@ client.destroy_collection 'blog', 'posts'
 
 罗列出 'blog' 下、'posts'里的所有`document`，并让返回的结果从第0页开始显示，每页显示20项：
 
-```ruby
-client.documents 'blog', 'posts', page: 0, per_page: 20
+```python
+client.documents.list('blog', 'posts', {'page': 0, 'per_page': 20})
 ```
 
 #### 创建一个`document`
 
 在 'blog' 下的 'posts' 里创建一个`document`：
 
-```ruby
-client.create_document 'blog', 'posts', {
-  title: 'My First Post',
-  tags: ['news'],
-  author: 'Author',
-  date: '2014-08-16T00:00:00Z',
-  body: 'Tinysou start online today!'
-}
+```python
+client.documents.create('blog', 'posts', {
+    'title': 'My First Post',
+    'tags': ['news'],
+    'author': 'Author',
+    'date': '2014-08-16T00:00:00Z',
+    'body': 'Tinysou start online today!'
+})
 ```
 
 > 完整参数请参见 [http://doc.tinysou/v1/indexing.html#4-11-创建一个-Document(自动生成-id-方式)](http://doc.tinysou/v1/indexing.html#4-11-创建一个-Document(自动生成-id-方式))
@@ -153,8 +140,8 @@ client.create_document 'blog', 'posts', {
 
 与`engine`和`collection`不同，`document`只能通过唯一的`documentId`来进行访问。在下面的例子中，`documentId`就是'293ddf9205df9b36ba5761d61ca59a29'：
 
-```ruby
-client.document 'blog', 'posts', '293ddf9205df9b36ba5761d61ca59a29'
+```python
+client.documents.get('blog', 'posts', '293ddf9205df9b36ba5761d61ca59a29')
 ```
 
 
@@ -162,10 +149,14 @@ client.document 'blog', 'posts', '293ddf9205df9b36ba5761d61ca59a29'
 
 在 'blog' 中的 'posts' 里更新一个`document`：
 
-```ruby
-client.update_document 'blog', 'posts', '293ddf9205df9b36ba5761d61ca59a29', {
-  title: 'First Post'
-}
+```python
+client.documents.update('blog', 'posts', '293ddf9205df9b36ba5761d61ca59a29', {
+    'title': 'First Post',
+    'tags': ['news'],
+    'author': 'Author',
+    'date': '2014-08-16T00:00:00Z',
+    'body': 'Tinysou start online today!'
+})
 ```
 
 > 完整参数请参见 [http://doc.tinysou/v1/indexing.html#4-14-创建或更新一个-Document](http://doc.tinysou/v1/indexing.html#4-14-创建或更新一个-Document)
@@ -174,16 +165,16 @@ client.update_document 'blog', 'posts', '293ddf9205df9b36ba5761d61ca59a29', {
 
 在 'blog' 中的 'posts' 里删除一个`document`：
 
-```ruby
-client.destroy_document 'blog', 'posts', '293ddf9205df9b36ba5761d61ca59a29'
+```python
+client.documents.delete('blog', 'posts', '293ddf9205df9b36ba5761d61ca59a29')
 ```
 
 ### 搜索
 
 在 'blog' 下的 'posts' 里搜索关键词'tinysou'：
 
-```ruby
-client.search 'blog', q: 'tinysou', c: 'posts'
+```python
+client.search('blog', {'q': 'tinysou', 'c': 'posts'})
 ```
 
 > 完整参数请参见 [http://doc.tinysou/v1/searching.html#2-2-2.搜索多个collection](http://doc.tinysou/v1/searching.html#2-2-2.搜索多个collection)
@@ -192,8 +183,8 @@ client.search 'blog', q: 'tinysou', c: 'posts'
 
 在 'posts' 里对关键词 'tinys' 进行补全：
 
-```ruby
-client.autocomplete 'blog', q: 't', c: 'posts'
+```python
+client.autocomplete('blog', {'q': 't', 'c': 'posts'})
 ```
 
 自动补全 API 与搜索 API 使用相同的权限验证，参数和返回格式。
@@ -201,14 +192,14 @@ client.autocomplete 'blog', q: 't', c: 'posts'
 
 ## 参与
 
-1. Fork 我们的项目 ( [https://github.com/tinysou/tinysou-ruby/fork][fork] )
+1. Fork 我们的项目 ( [https://github.com/tinysou/tinysou-python/fork][fork] )
 2. 创建你的新分支 (`git checkout -b my-new-feature`)
 3. 提交你的修改 (`git commit -am 'Add some feature'`)
 4. 推送到新分支 (`git push origin my-new-feature`)
 5. 创建一个合并请求
 
 
-[github]:https://github.com/tinysou/tinysou-ruby
+[github]:https://github.com/tinysou/tinysou-python
 [setup]:http://dashboard.tinysou.com/signup
-[fork]:https://github.com/tinysou/tinysou-ruby/fork
-[examples]:https://github.com/tinysou/tinysou-ruby/tree/master/examples
+[fork]:https://github.com/tinysou/tinysou-python/fork
+[examples]:https://github.com/tinysou/tinysou-python/tree/master/examples

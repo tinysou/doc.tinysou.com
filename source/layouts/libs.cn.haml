@@ -13,7 +13,9 @@
               %li.nav-libs-nodejs
                 = link_to 'Node.js', '/libs/nodejs.html'
               %li.nav-libs-ruby
-                = link_to 'Ruby', '/libs/ruby.html'  
+                = link_to 'Ruby', '/libs/ruby.html'
+              %li.nav-libs-python
+                = link_to 'Python', '/libs/python.html'
     .large-9.small-12.columns
       .right-content
         - if content_for? :raw_content
@@ -33,6 +35,8 @@
         = link_to 'Node.js', '/libs/nodejs.html'
       %li.nav-libs-ruby
         = link_to 'Ruby', '/libs/ruby.html'
+      %li.nav-libs-python
+        = link_to 'Python', '/libs/python.html'
 
   - content_for :javascripts do
     :coffee

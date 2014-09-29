@@ -8,7 +8,7 @@ title: Node.js 库
 
 ## 总述
 
-Node.js 库提供微搜索API的 Node.js 封装。直接使用该库能够帮助开发者方便快捷地使用微搜索的各项功能。所有源码托管在 github， 开发者们可前往查看[最新版本][github]。源码同时附带 demo，方便用户学习使用。
+Node.js 库提供微搜索API的 Node.js 封装。直接使用该库能够帮助开发者方便快捷地使用微搜索的各项功能。所有源码托管在 github， 开发者们可前往查看[最新版本][github]。源码同时附带 [例子][examples]，方便用户学习使用。
 
 ## 准备
 
@@ -282,6 +282,16 @@ tinysou.autocomplete('blog', {
 
 自动补全 API 与搜索 API 使用相同的权限验证，参数和返回格式。完整参数请参考搜索的参数。
 
+## 参与
+
+1. Fork 我们的项目 ( [https://github.com/tinysou/tinysou-python/fork][fork] )
+2. 创建你的新分支 (`git checkout -b my-new-feature`)
+3. 提交你的修改 (`git commit -am 'Add some feature'`)
+4. 推送到新分支 (`git push origin my-new-feature`)
+5. 创建一个合并请求
+
 
 [github]:https://github.com/tinysou/tinysou-node
 [setup]:http://dashboard.tinysou.com/signup
+[fork]:https://github.com/tinysou/tinysou-python/fork
+[examples]:https://github.com/tinysou/tinysou-node/tree/master/examples

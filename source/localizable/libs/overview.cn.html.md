@@ -14,5 +14,10 @@ title: 库与插件概述
 
 > Ruby 库提供微搜索API的 Ruby 封装。
 
+[Python][python]
+
+> Python 库提供微搜索API的 Python 封装。
+
 [nodejs]:/libs/nodejs.html
 [ruby]:/libs/ruby.html
+[python]:/libs/python.html
