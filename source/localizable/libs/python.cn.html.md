@@ -184,7 +184,22 @@ client.search('blog', {'q': 'tinysou', 'c': 'posts'})
 在 'posts' 里对关键词 'tinys' 进行补全：
 
 ```python
-client.autocomplete('blog', {'q': 't', 'c': 'posts'})
+client.search('blog', {
+    'q': 'tinysou', 'c': 'posts',
+    'page': 0, 'per_parge': 10,
+    'filter': {
+        'range': {
+            'field': "date",
+            'from': "2014-07-01T00:00:00Z",
+            'to': "2014-08-01T00:00:00Z"
+        }
+    },
+    'sort': {
+        'field': "date",
+        'order': "asc",
+        'mode': "avg"
+    }
+})
 ```
 
 自动补全 API 与搜索 API 使用相同的权限验证，参数和返回格式。

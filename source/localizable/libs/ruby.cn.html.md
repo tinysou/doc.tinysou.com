@@ -183,7 +183,22 @@ client.destroy_document 'blog', 'posts', '293ddf9205df9b36ba5761d61ca59a29'
 在 'blog' 下的 'posts' 里搜索关键词'tinysou'：
 
 ```ruby
-client.search 'blog', q: 'tinysou', c: 'posts'
+client.search 'blog', {
+    q: 'tinysou', c: 'posts',
+    page: 0, per_parge: 10,
+    filter: {
+        range: {
+            field: "date",
+            from: "2014-07-01T00:00:00Z",
+            to: "2014-08-01T00:00:00Z"
+        }
+    },
+    sort: {
+        field: "date",
+        order: "asc",
+        mode: "avg"
+    }
+}
 ```
 
 > 完整参数请参见 [http://doc.tinysou/v1/searching.html#2-2-2.搜索多个collection](http://doc.tinysou/v1/searching.html#2-2-2.搜索多个collection)
