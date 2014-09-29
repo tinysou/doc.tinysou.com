@@ -184,7 +184,7 @@ client.search('blog', {'q': 'tinysou', 'c': 'posts'})
 在 'posts' 里对关键词 'tinys' 进行补全：
 
 ```python
-client.search('blog', {
+client.autocomplete('blog', {
     'q': 'tinysou', 'c': 'posts',
     'page': 0, 'per_parge': 10,
     'filter': {
