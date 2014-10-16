@@ -19,5 +19,5 @@
 .rbenv-gemsets
 
 /vendor/ruby
-/vendor/assets/components
+/vendor/assets/components/
 !/vendor/assets/components/.keep
