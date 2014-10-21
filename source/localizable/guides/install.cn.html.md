@@ -11,7 +11,7 @@ title: 安装插件
 
 搜索结果显示在一个弹出窗口，最简单的安装方式。
 
-1.复制代码，粘贴到网页的HTML代码中。
+1.复制代码，粘贴到网页的 HTML 代码中。
 
 ```html
 <script>
@@ -44,7 +44,7 @@ _ts(option);
 
 在当前页面的一个区域里，显示搜索结果。
 
-1.添加div，id为 `ts-results-container` ，放在要显示搜索结果的地方。
+1.添加 div，id 为 `ts-results-container` ，放在要显示搜索结果的地方。
 
 ```html
 <div id='ts-results-container'></div>
@@ -56,7 +56,7 @@ _ts(option);
 <form><input type='text' id='ts-search-input'></form>
 ```
 
-3.复制代码，粘贴到网页的HTML代码中。
+3.复制代码，粘贴到网页的 HTML 代码中。
 
 ```html
 <script>
@@ -91,13 +91,13 @@ _ts(option);
 <form><input type='text' id='ts-search-input'></form>
 ```
 
-2.在显示搜索结果的页面上，添加div，放在要显示搜索结果的地方。
+2.在显示搜索结果的页面上，添加 div，放在要显示搜索结果的地方。
 
 ```html
 <div id='ts-results-container'></div>
 ```
 
-3.复制代码，粘贴到网页的HTML代码中。将代码中的 `resultPageURL` 值替换为你用来显示搜索结果的页面地址的路径部分，即 URL 的 pathname。例如 `/search.html`。
+3.复制代码，粘贴到网页的 HTML 代码中。将代码中的 `resultPageURL` 值替换为你用来显示搜索结果的页面地址的路径部分，即 URL 的 `pathname`。例如 `/search.html`。
 
 ```html
 <script>
@@ -142,7 +142,7 @@ _ts(option);
 <form><input type='text' id='ts-search-input'></form>
 ```
 
-3.添加显示搜索结果的div。
+3.添加显示搜索结果的 div。
 
 ```html
 <div id='ts-results-container'></div>
