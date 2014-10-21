@@ -28,47 +28,47 @@
   = javascript_include_tag "modernizr"
   = yield_content :head
 %body
+  %nav.tab-bar.show-for-small
+    %section.left-small
+      %a.left-off-canvas-toggle.menu-icon
+        %span
+    %section.middle.tab-bar-section
+      %a{:href => "/"}
+        %h1.title= "微搜索 文档中心"
+    - if content_for? :second_nav
+      %section.right-small
+        %a.right-off-canvas-toggle.menu-icon
+          %span
+  .gray-bg.hide-for-small
+    .row
+      %nav.top-bar{:'data-topbar' => true}
+        %ul.title-area
+          %li.name
+            %h1
+              %a{href: '/'}
+                = "文档中心"
+        - unless current_page.data.nosearch
+          %section.top-bar-section
+            %ul.left
+              %li.has-form
+                %form
+                  %input.search-input{type: 'search', id: 'ts-search-input', placeholder: '搜索'}
+        %section.top-bar-section
+          %ul.right
+            %li.nav-guides
+              = link_to '指南', '/guides/overview.html'
+            %li.nav-api
+              = link_to 'API', '/v1/overview.html'
+            %li.nav-crawler
+              = link_to '爬虫', '/crawler/overview.html'
+            %li.nav-libs
+              = link_to '库与插件', '/libs/overview.html'
+            %li.nav-changelog
+              %a{href: 'http://blog.tinysou.com/cn/tags/文档中心.html'}= '更新日志'
+            %li.nav-backtinysou
+              %a{href: 'http://tinysou.com'}= '回到 微搜索'
   .off-canvas-wrap{:'data-offcanvas' => true}
     .inner-wrap
-      .gray-bg.hide-for-small
-        .row
-          %nav.top-bar{:'data-topbar' => true}
-            %ul.title-area
-              %li.name
-                %h1
-                  %a{href: '/'}
-                    = "文档中心"
-            - unless current_page.data.nosearch
-              %section.top-bar-section
-                %ul.left
-                  %li.has-form
-                    %form
-                      %input.search-input{type: 'search', id: 'ts-search-input', placeholder: '搜索'}
-            %section.top-bar-section
-              %ul.right
-                %li.nav-guides
-                  = link_to '指南', '/guides/overview.html'
-                %li.nav-api
-                  = link_to 'API', '/v1/overview.html'
-                %li.nav-crawler
-                  = link_to '爬虫', '/crawler/overview.html'
-                %li.nav-libs
-                  = link_to '库与插件', '/libs/overview.html'
-                %li.nav-changelog
-                  %a{href: 'http://blog.tinysou.com/cn/tags/文档中心.html'}= '更新日志'
-                %li.nav-backtinysou
-                  %a{href: 'http://tinysou.com'}= '回到 微搜索'
-      %nav.tab-bar.show-for-small
-        %section.left-small
-          %a.left-off-canvas-toggle.menu-icon
-            %span
-        %section.middle.tab-bar-section
-          %a{:href => "/"}
-            %h1.title= "微搜索 文档中心"
-        - if content_for? :second_nav
-          %section.right-small
-            %a.right-off-canvas-toggle.menu-icon
-              %span
       %aside.left-off-canvas-menu.show-for-small
         %ul.off-canvas-list
           %li
@@ -93,6 +93,7 @@
             %a{href: 'http://tinysou.com'}= '回到 微搜索'
       %aside.right-off-canvas-menu.show-for-small
         = yield_content :second_nav
+      %a.exit-off-canvas
       %hr
       / Main page container
       = yield
@@ -111,7 +112,6 @@
             %p.list
               %a.reverse{href: 'http://tinysou.com'}= "© #{Date.today.year} 微搜索"
               %a.reverse{href: 'http://www.miibeian.gov.cn'}= '苏ICP备12071270号'
-      %a.exit-off-canvas
 
   /[if lt IE 9]
     #ie-warning-overlay
