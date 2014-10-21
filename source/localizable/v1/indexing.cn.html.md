@@ -369,7 +369,7 @@ Status: 200 OK
 ]
 ```
 
-### 创建一个 Document(自动生成 id 方式)
+### 创建一个 Document
 
 ```
 POST /engines/:engine_name/collections/:collection_name/documents
@@ -417,10 +417,6 @@ Location: http://api.tinysou.com/v1/engines/demo/collections/post/documents/293d
 }
 ```
 
-### 创建一个 Document(指定 id 方式)
-
-见 "[创建或更新一个 Document][upsert-a-doc]" 一节。
-
 ### 获取一个 Document
 
 ```
@@ -453,7 +449,7 @@ Status: 200 OK
 }
 ```
 
-### 创建或更新一个 Document
+### 更新一个 Document
 
 ```
 PUT /engines/:engine_name/collections/:collection_name/documents/:document_id
@@ -756,6 +752,5 @@ Status: 204 No Content
 
 [auth]:/v1/overview.html#6-权限验证
 [field_types]:/v1/overview.html#3-Field-Types
-[upsert-a-doc]:/v1/indexing.html#4-14-创建或更新一个-Document
-[create-a-doc]:/v1/indexing.html#4-12-创建一个-Document(指定-id-方式)
+[create-a-doc]:/v1/indexing.html#4-12-创建一个-Document
 [crawler]:/crawler/overview.html
