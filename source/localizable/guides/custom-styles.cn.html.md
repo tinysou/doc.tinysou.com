@@ -15,7 +15,7 @@ title: 自定义搜索样式
 
 ```html
 <form>
-  <input type="text" id="ts-search-input" class="ts-searching-input" />
+  <input type="text" id="ts-search-input" class="ts-search-input" />
 </form>
 ```
 
