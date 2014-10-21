@@ -752,5 +752,5 @@ Status: 204 No Content
 
 [auth]:/v1/overview.html#6-权限验证
 [field_types]:/v1/overview.html#3-Field-Types
-[create-a-doc]:/v1/indexing.html#4-12-创建一个-Document
+[create-a-doc]:/v1/indexing.html#4-11-创建一个-Document
 [crawler]:/crawler/overview.html
