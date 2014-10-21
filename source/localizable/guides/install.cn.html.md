@@ -85,7 +85,7 @@ _ts(option);
 
 搜索结果将显示在新的页面里，推荐高级用户使用。
 
-1.复制代码，为当前页面和显示搜索的页面添加搜索框。
+1.复制代码，为当前页面和显示搜索结果的页面添加搜索框。
 
 ```html
 <form><input type='text' id='ts-search-input'></form>
@@ -97,7 +97,7 @@ _ts(option);
 <div id='ts-results-container'></div>
 ```
 
-3.复制代码，粘贴到网页的 HTML 代码中。将代码中的 `resultPageURL` 值替换为你用来显示搜索结果的页面地址的路径部分，即 URL 的 `pathname`。例如 `/search.html`。
+3.复制代码，粘贴到当前网页和显示搜索结果网页的 HTML 代码中。将代码中的 `resultPageURL` 值替换为你用来显示搜索结果的页面地址的路径部分，即 URL 的 `pathname`。例如 `/search.html`。
 
 ```html
 <script>
