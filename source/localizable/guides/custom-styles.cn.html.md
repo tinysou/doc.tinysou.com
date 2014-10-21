@@ -7,11 +7,11 @@ title: 自定义搜索样式
 
 你可以通过添加 CSS 代码来覆盖默认的样式。
 
-注意：为了定制微搜索样式，你需要对HTML和CSS相关知识有一些了解。
+注意：为了定制微搜索样式，你需要对 HTML 和 CSS 相关知识有一些了解。
 
 ## 搜索框样式
 
-安装微搜索搜索框时，可以为 `input` 元素添加 `ts-search-input` CSS class来覆盖默认的样式。
+安装微搜索搜索框时，可以为 `input` 元素添加 `ts-search-input` CSS class 来覆盖默认的样式。
 
 ```html
 <form>

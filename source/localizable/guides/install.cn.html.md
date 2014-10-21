@@ -11,7 +11,7 @@ title: 安装插件
 
 搜索结果显示在一个弹出窗口，最简单的安装方式。
 
-1.复制代码，粘贴到网页的HTML代码中。
+1.复制代码，粘贴到网页的 HTML 代码中。
 
 ```html
 <script>
@@ -44,7 +44,7 @@ _ts(option);
 
 在当前页面的一个区域里，显示搜索结果。
 
-1.添加div，id为 `ts-results-container` ，放在要显示搜索结果的地方。
+1.添加 div，id 为 `ts-results-container` ，放在要显示搜索结果的地方。
 
 ```html
 <div id='ts-results-container'></div>
@@ -56,7 +56,7 @@ _ts(option);
 <form><input type='text' id='ts-search-input'></form>
 ```
 
-3.复制代码，粘贴到网页的HTML代码中。
+3.复制代码，粘贴到网页的 HTML 代码中。
 
 ```html
 <script>
@@ -85,19 +85,19 @@ _ts(option);
 
 搜索结果将显示在新的页面里，推荐高级用户使用。
 
-1.复制代码，粘贴到要显示搜索框的地方。
+1.复制代码，为当前页面和显示搜索的页面添加搜索框。
 
 ```html
 <form><input type='text' id='ts-search-input'></form>
 ```
 
-2.在显示搜索结果的页面上，添加div，放在要显示搜索结果的地方。
+2.在显示搜索结果的页面上，添加 div，放在要显示搜索结果的地方。
 
 ```html
 <div id='ts-results-container'></div>
 ```
 
-3.复制代码，粘贴到网页的HTML代码中。将代码中的 `resultPageURL` 值替换为你用来显示搜索结果的页面的地址。例如 `/search.html`。
+3.复制代码，粘贴到网页的 HTML 代码中。将代码中的 `resultPageURL` 值替换为你用来显示搜索结果的页面地址的路径部分，即 URL 的 `pathname`。例如 `/search.html`。
 
 ```html
 <script>
@@ -122,48 +122,6 @@ _ts(option);
 ```
 
 4.[更多配置][custom-js]。
-
-## 高级
-
-用TinySou库实现一个自定义的搜索框，仅供高级用户使用。
-
-1.需要在你的网页中包含 `jquery.tinysou.min.js` , `tinysou.min.css` 和其依赖库文件，如下：
-
-```html
-<script src='//tinysou-cdn.b0.upaiyun.com/jquery.tinysou.min.js'></script>
-<script src='jquery.js'></script>
-<script src='jquery.modal.js'></script>
-<script src='jquery.hashchange.js'></script>
-<script src='hogan.js'></script>
-<link type='text/css' rel='stylesheet' href='//tinysou-cdn.b0.upaiyun.com/tinysou.min.css' media='all' />
-```
-
-2.添加搜索框。
-
-```html
-<form><input type='text' id='ts-search-input'></form>
-```
-
-3.添加显示搜索结果的div。
-
-```html
-<div id='ts-results-container'></div>
-```
-
-4.配置插件。
-
-```html
-<script>
-  $(document).ready(function(){
-    $('#ts-search-input').tinysouSearch({
-      engineKey: '7d5f1328cf2823e0dac6',
-      perPage: 4,
-    });
-  })
-</script>
-```
-
-5.[更多配置][custom-js]。
 
 [resource_structure]:resource_structure.png
 [add-domain]:add-domain.png
