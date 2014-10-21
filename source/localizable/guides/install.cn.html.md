@@ -123,46 +123,6 @@ _ts(option);
 
 4.[更多配置][custom-js]。
 
-## 高级
-
-用TinySou库实现一个自定义的搜索框，仅供高级用户使用。
-
-1.需要在你的网页中包含 `jquery.tinysou.min.js` , `tinysou.min.css` 和其依赖库文件，如下：
-
-```html
-<script src='//tinysou-cdn.b0.upaiyun.com/jquery.tinysou.min.js'></script>
-<script src='jquery.js'></script>
-<script src='jquery.modal.js'></script>
-<link type='text/css' rel='stylesheet' href='//tinysou-cdn.b0.upaiyun.com/tinysou.min.css' media='all' />
-```
-
-2.添加搜索框。
-
-```html
-<form><input type='text' id='ts-search-input'></form>
-```
-
-3.添加显示搜索结果的 div。
-
-```html
-<div id='ts-results-container'></div>
-```
-
-4.配置插件。
-
-```html
-<script>
-  $(document).ready(function(){
-    $('#ts-search-input').tinysouSearch({
-      engineKey: '7d5f1328cf2823e0dac6',
-      perPage: 4,
-    });
-  })
-</script>
-```
-
-5.[更多配置][custom-js]。
-
 [resource_structure]:resource_structure.png
 [add-domain]:add-domain.png
 [field_types]:/v1/overview.html#3-Field-Types
