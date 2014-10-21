@@ -91,7 +91,7 @@ var defaultRenderFunction = function (item) {
   var title = item['document']['title'];
   var url = item['document']['url'];
   var body = (item.highlight && item.highlight['body']) || item['document']['sections'].join(',');
-  return '<div class="ts-result"><h3 class="title"><a href='+ url + ' class="ts-search-result-link">' + title + '</a></h3><div class="ts-metadata"><span class="ts-snippet">' + TinySou.htmlEscape(body) + '</span></div></div>';
+  return '<div class="ts-result"><h3 class="title"><a href='+ url + ' class="ts-search-result-link">' + title + '</a></h3><div class="ts-metadata"><span class="ts-snippet">' + body + '</span></div></div>';
 };
 ```
 
