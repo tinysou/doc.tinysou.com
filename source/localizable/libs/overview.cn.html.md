@@ -18,6 +18,11 @@ title: 库与插件概述
 
 > Python 库提供微搜索API的 Python 封装。
 
+[Javascript][javascript]
+
+> Javascript 库提供微搜索API的 Javascript 封装。
+
 [nodejs]:/libs/nodejs.html
 [ruby]:/libs/ruby.html
 [python]:/libs/python.html
+[javascript]:/libs/js.html
