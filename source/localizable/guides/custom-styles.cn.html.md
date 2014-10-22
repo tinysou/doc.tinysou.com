@@ -11,13 +11,17 @@ title: 自定义搜索样式
 
 ## 搜索框样式
 
-安装微搜索搜索框时，可以为 `input` 元素添加 `ts-search-input` CSS class 来覆盖默认的样式。
+安装微搜索搜索框时，为 `input` 元素添加 `ts-search-input` CSS class 将使用微搜索提供的输入框样式。
 
 ```html
 <form>
   <input type="text" id="ts-search-input" class="ts-search-input" />
 </form>
 ```
+
+效果如下：
+
+![custom-input-style](custom-input.png)
 
 定制搜索表单的样式，需要覆盖 `form input.ts-search-input`样式。如果去掉 `ts-search-input` class，表单将使用你网站的默认表单样式。
 
