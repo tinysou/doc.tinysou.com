@@ -20,25 +20,32 @@ Android 库通过调用 public 接口，实现发送搜索请求、接收处理�
 ### 初始化
 填写微搜索的 engine_key
 
+```java
     String engine_key = "YOUR_ENGINE_KEY";
      // 初始化客户端
     TinySouClient client = new TinySouClient(engine_key);
+```
+    
 
 ### 搜索 API
 
 发送搜索请求，获得搜索结果
 
+```java
     // 设置搜索结果来自于第几页
     client.setPage(searchPage);
     // 获得 String 格式的搜索结果
     String result = client.Search(search_content);
+```
     
 ### 自动补全 API
 
 发送自动补全请求，获得自动补全结果
 
+```java
     // 获得 String 格式的自动补全结果
     String result = client.AutoSearch(search_content);
+```
     
 其他参数的获取方法请参考微搜索的[API文档](http://doc.tinysou.com/v1/overview.html)。
 
