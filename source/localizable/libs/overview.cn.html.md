@@ -18,6 +18,11 @@ title: 库与插件概述
 
 > Python 库提供微搜索API的 Python 封装。
 
+[Android][android]
+
+> Android 库通过调用 public 接口，实现发送搜索请求、接收处理搜索响应等功能。
+
 [nodejs]:/libs/nodejs.html
 [ruby]:/libs/ruby.html
 [python]:/libs/python.html
+[android]:/libs/android.html
