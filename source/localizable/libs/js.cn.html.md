@@ -31,7 +31,7 @@ Javascript 库为网站的搜索框提供搜索功能。直接使用该库能帮
 <form><input type='text' id='ts-search-input'></form>
 ```
 
-```js
+```javascript
 var option = {
   engineKey: 'YOUT_ENGINE_KEY'
 };
@@ -88,7 +88,7 @@ autocompleteContainingElement| 'body' | 自动补全部分的 HTML 将默认添�
 
 * `defaultLoadingFunction`
 
-```js
+```javascript
 var defaultLoadingFunction = function(query, $resultContainer) {
     $resultContainer.html('<p class="ts-loading-message">loading...</p>');
   };
@@ -96,7 +96,7 @@ var defaultLoadingFunction = function(query, $resultContainer) {
 
 * `defaultRenderResultsFunction`
 
-```js
+```javascript
 var defaultRenderResultsFunction = function (ctx, data) {
   var $resultContainer = ctx.resultContainer,
     config = ctx.config;
@@ -119,7 +119,7 @@ var defaultRenderResultsFunction = function (ctx, data) {
 
 * `defaultRenderFunction`
 
-```js
+```javascript
 var defaultRenderFunction = function (item) {
   var title = item['document']['title'];
   var url = item['document']['url'];
@@ -130,7 +130,7 @@ var defaultRenderFunction = function (item) {
 
 * `defaultOnComplete`
 
-```js
+```javascript
 var defaultOnComplete = function(item, prefix) {
   window.location = item['document']['url'];
 };
@@ -138,7 +138,7 @@ var defaultOnComplete = function(item, prefix) {
 
 * `defaultRenderActResultsFunction`
 
-```js
+```javascript
 var defaultRenderActResultsFunction = function(ctx, results) {
   var $list = ctx.list,
     config = ctx.config;
@@ -151,7 +151,7 @@ var defaultRenderActResultsFunction = function(ctx, results) {
 
 * `defaultRenderActFunction`
 
-```js
+```javascript
 var defaultRenderActFunction = function(item) {
   return '<p class="title">' + TinySou.htmlEscape(item['document']['title']) + '</p>';
 };
@@ -159,7 +159,7 @@ var defaultRenderActFunction = function(item) {
 
 * `defaultDropdownStylesFunction`
 
-```js
+```javascript
 var defaultDropdownStylesFunction = function($this) {
   var config = $this.data('tinysou-config-autocomplete');
   var $attachEl = config.attachTo ? $(config.attachTo) : $this;

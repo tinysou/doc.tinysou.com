@@ -21,6 +21,10 @@ title: 库与插件概述
 
 > Python 库提供微搜索 API 的 Python 封装。
 
+[PHP][php]
+
+> PHP 库提供微搜索 API 的 PHP 封装。
+
 ## 前端库
 
 [Android][android]
@@ -34,5 +38,6 @@ title: 库与插件概述
 [nodejs]:/libs/nodejs.html
 [ruby]:/libs/ruby.html
 [python]:/libs/python.html
+[php]:/libs/php.html
 [android]:/libs/android.html
 [javascript]:/libs/js.html
