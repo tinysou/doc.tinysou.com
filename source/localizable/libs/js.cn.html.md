@@ -60,6 +60,8 @@ _ts(option);
 
 你可以通过传入特定的 options 值，来方便定制搜索行为。下面是默认的 option 列表：
 
+#### Options 默认值和说明
+
 参数         | 默认值      | 说明
 ----------- | ----------- | -----------
 attachTo | undefined | 默认自动补全列表将位于搜索框的下面。
@@ -72,27 +74,133 @@ fetchFields | ['title', 'url', 'sections'] | 默认情况下，搜索结果中�
 renderStyle| undefined | 支持三种方式弹出，嵌入页面和新页面，其对应值为 undefined，'inline' 和 'new_page'，默认为弹出方式。
 resultPageURL| undefined | 当 renderStyle 为 'new_page' 时，通过 'resultPageURL' 来指定新页面的 URL。注意，此处为页面地址的路径部分，即 URL 的 pathname。例如如果新页面的 URL 为 'http://tinysou.com/result.html'，'resulePageURL' 为 '/result.html'。
 resultContainingElement| undefined | 搜索结果将显示在其指定的元素中。
-preRenderFunction| undefined |
-postRenderFunction| defaultPostRenderFunction |
-loadingFunction| defaultLoadingFunction |
-renderResultsFunction| defaultRenderResultsFunction |
-renderFunction| defaultRenderFunction |
+preRenderFunction| undefined | 指定渲染搜索结果前调用的方法。
+postRenderFunction| defaultPostRenderFunction | 指定渲染搜索结果后调用的方法。
+loadingFunction| defaultLoadingFunction | 加载搜索结果时的方法。
+renderResultsFunction| defaultRenderResultsFunction | 渲染搜索结果的方法。
+renderFunction| defaultRenderFunction | 渲染每条搜索结果的方法。
 perPage| 10 | 每页显示的搜索结果数量。
 activeItemClass| 'active' | 自动补全列表选中时添加的 CSS class。
-noResultsClass| 'noResults' |
-noResultsMessage| undefined |
-onComplete| defaultOnComplete |
-renderActResultsFunction| defaultRenderActResultsFunction |
-renderActFunction| defaultRenderActFunction |
-dropdownStylesFunction| defaultDropdownStylesFunction |
+onComplete| defaultOnComplete | 点击自动补全结果后调用的方法。
+renderActResultsFunction| defaultRenderActResultsFunction | 渲染自动补全结果的方法。
+renderActFunction| defaultRenderActFunction | 渲染每条自动补全结果的方法。
+dropdownStylesFunction| defaultDropdownStylesFunction | 生成自动补全下拉框样式的方法。
 resultLimit| 5 | 自动补全时补全条目的数量。
-autocompleteListType| 'ul' |
-autocompleteListClass| autocomplete' | 自动补全列表默认的 CSS class 是 'autocomplete', 这将使用 TinySou 提供的补全样式，如果想定义另一套补全样式，可以指定这个 class。
-resultListSelector| 'li' |
+autocompleteListType| 'ul' | 指定自动补全列表的 HTML 标签，默然为 ul。
+autocompleteListClass| 'autocomplete' | 自动补全列表默认的 CSS class 是 'autocomplete', 这将使用 TinySou 提供的补全样式，如果想定义另一套补全样式，可以指定这个 class。
+resultListSelector| 'li' | 自动补全结果中每条结果的 HTML 标签。
 setWidth| true | 是否按照 attachTo 的元素设置补全列表的宽度。
 typingDelay| 80 | 搜索框输入搜索内容后，进行自动补全的延迟时间，默认为 80ms。
 disableAutocomplete| false | 是否禁用自动补全，默认可以进行自动补全，值为 true 时禁用自动补全。
 autocompleteContainingElement| 'body' | 自动补全默认是 body 元素的子元素。
+
+####默认的 JS 方法
+
+* defaultPostRenderFunction
+
+```js
+var defaultPostRenderFunction = function(data) {
+  var info = data.info;
+  var total = 0;
+  var max_score = 0.0;
+  var $resultContainer = this.getContext().resultContainer;
+  var spellingSuggestion = null;
+
+  if (info) {
+    total = info['total'];
+    max_score = info['max_score'];
+    if (info['spelling_suggestion']) {
+      spellingSuggestion = info['spelling_suggestion']['text'];
+    }
+  }
+
+  if (total === 0) {
+    $resultContainer.html("<div id='ts-no-results' class='ts-no-results'>没有找到结果.</div>");
+  }
+
+  if (spellingSuggestion !== null) {
+    $resultContainer.append('<div class="ts-spelling-suggestion">你是不是在找 <a href="#" data-hash="true" data-spelling-suggestion="' + spellingSuggestion + '">' + spellingSuggestion + '</a>?</div>');
+  }
+};
+```
+* defaultLoadingFunction
+```js
+var defaultLoadingFunction = function(query, $resultContainer) {
+    $resultContainer.html('<p class="ts-loading-message">loading...</p>');
+  };
+```
+* defaultRenderResultsFunction
+```js
+var defaultRenderResultsFunction = function (ctx, data) {
+  var $resultContainer = ctx.resultContainer,
+    config = ctx.config;
+
+  $resultContainer.html('');
+
+  $.each(data.records, function (idx, item) {
+    ctx.registerResult($(config.renderFunction(item)).appendTo($resultContainer), item);
+  });
+
+  renderPagination(ctx, data.info);
+  if (!config.renderStyle) {
+    $('#ts-results-container').appendTo('body').ts_modal({zIndex: 9999});
+  } else if (config.renderStyle == 'new_page') {
+    var url = config.resultPageURL + window.location.hash;
+    window.location.replace(url);
+  }
+};
+```
+* defaultRenderFunction
+```js
+var defaultRenderFunction = function (item) {
+  var title = item['document']['title'];
+  var url = item['document']['url'];
+  var body = (item.highlight && item.highlight['body']) || item['document']['sections'].join(',');
+  return '<div class="ts-result"><h3 class="title"><a href='+ url + ' class="ts-search-result-link">' + title + '</a></h3><div class="ts-metadata"><span class="ts-snippet">' + body + '</span></div></div>';
+};
+```
+* defaultOnComplete
+```js
+var defaultOnComplete = function(item, prefix) {
+  window.location = item['document']['url'];
+};
+```
+* defaultRenderActResultsFunction
+```js
+var defaultRenderActResultsFunction = function(ctx, results) {
+  var $list = ctx.list,
+    config = ctx.config;
+
+  $.each(results, function(idx, item) {
+    ctx.registerActResult($('<li>' + config.renderActFunction(item) + '</li>').appendTo($list), item);
+  });
+};
+```
+* defaultRenderActFunction
+```js
+var defaultRenderActFunction = function(item) {
+  return '<p class="title">' + TinySou.htmlEscape(item['document']['title']) + '</p>';
+};
+```
+* defaultDropdownStylesFunction
+```js
+var defaultDropdownStylesFunction = function($this) {
+  var config = $this.data('tinysou-config-autocomplete');
+  var $attachEl = config.attachTo ? $(config.attachTo) : $this;
+  var offset = $attachEl.offset();
+  var styles = {
+    'position': 'absolute',
+    'z-index': 9999,
+    'top': offset.top + $attachEl.outerHeight() + 1,
+    'left': offset.left
+  };
+
+  if (config.setWidth) {
+    styles['width'] = $attachEl.outerWidth() - 2;
+  }
+  return styles;
+};
+```
 
 ## 参与
 
