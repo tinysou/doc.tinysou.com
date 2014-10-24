@@ -15,17 +15,17 @@ Javascript 库为网站的搜索框提供搜索功能。直接使用该库能帮
 
 本库分别提供基于 jQuery 和 Zepto 的 TinySou 插件，移动端默认使用基于 Zepto 的轻量级 Javascript 库，PC 端使用基于 jQuery 库的插件。
 
-### engine_key
+### `engine_key`
 
-使用 Javascript 库之前，你需要有一个 engine_key。
+使用 Javascript 库之前，你需要有一个 `engine_key`。
 
-在 TinySou 控制台 Engines-> 概述 里，你可以找到你的 engine_key；如果你没有账号，请先前往 [注册][setup]。
+在 TinySou 控制台 Engines-> 概述 里，你可以找到你的 `engine_key`；如果你没有账号，请先前往 [注册][setup]。
 
 ## 使用
 
 ### 基本用法
 
- 复制粘贴下面的代码到 HTML 中的 script 标签中，并填写你的 engine_key。简单添加后，输入框将具有搜索功能。
+ 复制粘贴下面的代码到 HTML 中的 `script` 标签中，并填写你的 `engine_key`。简单添加后，输入框将具有搜索功能。
 
 ```html
 <form><input type='text' id='ts-search-input'></form>
@@ -50,14 +50,14 @@ _ts(option);
 
 ### Option
 
-你可以通过传入特定的 option 值，来方便定制搜索行为。下面是默认的 option 列表：
+你可以通过传入特定的 `option` 值，来方便定制搜索行为。下面是默认的 `option` 列表：
 
 参数         | 默认值      | 说明
 ----------- | ----------- | -----------
 attachTo | undefined | 自动补全列表默认将位于搜索框的下面。
-collection | 'page' | 默认搜索的 collection 是 'page'。
+collection | 'page' | 默认搜索的 `collection` 是 `page`。
 filters | undefined | 可以通过 filter 参数来限制搜索的范围。更多内容可以查看 [filter][doc-filter]。
-engineKey `必需` | undefined | 搜索引擎的 engine_key，需要指定这个 field。
+engineKey `必需` | undefined | 搜索引擎的 `engine_key`，需要指定这个 field。
 searchFields | undefined | 默认情况下，会对 document 的所有 string 和 text 类型的 field 进行搜索。如果想只搜索特定的 field，可以利用 search_fields 进行指定。例如： ["title", "body"] 表示只搜索每个 document 的 'title’, 'body' 两个 field。field 可以搜索的类型包括：string，text，enum，integer，float。
 sort | undefined | 默认情况下，根据搜索结果中每个 document 的 score，对搜索结果进行排序。如果你需要按照特定 field 进行排序，可通过 sort 参数实现。例如，sort 指定为 price，表示按照 'price' 升序(从小到大)排序，当'price'是个array时，取平均值作为排序依据。
 fetchFields | ['title', 'url', 'sections'] | 默认情况下，搜索结果中的每个 document，会包含 title，url 和 sections。
@@ -79,7 +79,7 @@ resultLimit| 5 | 自动补全时补全条目的数量。
 autocompleteListType| 'ul' | 指定自动补全列表的 HTML 标签，默然为 ul。
 autocompleteListClass| 'autocomplete' | 自动补全列表默认的 CSS class 为 'autocomplete', 这将使用 TinySou 提供的补全样式，如果想定义另一套补全样式，可以指定这个 class。
 resultListSelector| 'li' | 自动补全结果中每个条目的 HTML 标签。
-setWidth| true | 是否按照 attachTo 设定的元素来设置补全列表的宽度。
+setWidth| true | 是否按照 `attachTo` 设定的元素来设置补全列表的宽度。
 typingDelay| 80 | 搜索框输入搜索内容后，进行自动补全的延迟时间，默认为 80ms。
 disableAutocomplete| false | 是否禁用自动补全，默认开启自动补全，值为 true 时禁用自动补全。
 autocompleteContainingElement| 'body' | 自动补全部分的 HTML 将默认添加到 body 元素中。
