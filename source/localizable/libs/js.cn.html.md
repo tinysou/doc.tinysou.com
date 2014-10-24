@@ -13,7 +13,7 @@ Javascript 库为网站的搜索框提供搜索功能。直接使用该库能帮
 
 ### 依赖
 
-本库分别提供基于 jQuery 和 Zepto 的 TinySou 插件，移动端默认使用基于 Zepto 的轻量级 Javascript 库，PC 端使用基于 Jquery 库的插件。
+本库分别提供基于 jQuery 和 Zepto 的 TinySou 插件，移动端默认使用基于 Zepto 的轻量级 Javascript 库，PC 端使用基于 jQuery 库的插件。
 
 ### engine_key
 
