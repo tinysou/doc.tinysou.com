@@ -123,13 +123,17 @@ var defaultPostRenderFunction = function(data) {
   }
 };
 ```
+
 * defaultLoadingFunction
+
 ```js
 var defaultLoadingFunction = function(query, $resultContainer) {
     $resultContainer.html('<p class="ts-loading-message">loading...</p>');
   };
 ```
+
 * defaultRenderResultsFunction
+
 ```js
 var defaultRenderResultsFunction = function (ctx, data) {
   var $resultContainer = ctx.resultContainer,
@@ -150,7 +154,9 @@ var defaultRenderResultsFunction = function (ctx, data) {
   }
 };
 ```
+
 * defaultRenderFunction
+
 ```js
 var defaultRenderFunction = function (item) {
   var title = item['document']['title'];
@@ -159,13 +165,17 @@ var defaultRenderFunction = function (item) {
   return '<div class="ts-result"><h3 class="title"><a href='+ url + ' class="ts-search-result-link">' + title + '</a></h3><div class="ts-metadata"><span class="ts-snippet">' + body + '</span></div></div>';
 };
 ```
+
 * defaultOnComplete
+
 ```js
 var defaultOnComplete = function(item, prefix) {
   window.location = item['document']['url'];
 };
 ```
+
 * defaultRenderActResultsFunction
+
 ```js
 var defaultRenderActResultsFunction = function(ctx, results) {
   var $list = ctx.list,
@@ -176,13 +186,17 @@ var defaultRenderActResultsFunction = function(ctx, results) {
   });
 };
 ```
+
 * defaultRenderActFunction
+
 ```js
 var defaultRenderActFunction = function(item) {
   return '<p class="title">' + TinySou.htmlEscape(item['document']['title']) + '</p>';
 };
 ```
+
 * defaultDropdownStylesFunction
+
 ```js
 var defaultDropdownStylesFunction = function($this) {
   var config = $this.data('tinysou-config-autocomplete');
