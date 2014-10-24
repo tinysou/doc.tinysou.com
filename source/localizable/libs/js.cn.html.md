@@ -65,7 +65,7 @@ renderStyle| undefined | 支持三种显示搜索结果的方式：弹出，嵌�
 resultPageURL| undefined | 当 renderStyle 为 'new_page' 时，通过 'resultPageURL' 来指定新页面的 URL。注意，此处为页面地址的路径部分，即 URL 的 pathname。例如如果新页面的 URL 为 'http://tinysou.com/result.html'，'resulePageURL' 应设为 '/result.html'。
 resultContainingElement| undefined | 搜索结果将显示在其指定的元素中，当 renderStyle 设为 'inline' 或 'new_page' 时，需要指定这个 field。
 preRenderFunction| undefined | 指定渲染搜索结果前调用的方法。
-postRenderFunction| defaultPostRenderFunction | 指定渲染搜索结果后调用的方法，默认值见下。
+postRenderFunction| undefined | 指定渲染搜索结果后调用的方法。
 loadingFunction| defaultLoadingFunction | 加载搜索结果时的方法，默认值见下。
 renderResultsFunction| defaultRenderResultsFunction | 渲染搜索结果的方法，默认值见下。
 renderFunction| defaultRenderFunction | 渲染每条搜索结果的方法。
@@ -85,34 +85,6 @@ disableAutocomplete| false | 是否禁用自动补全，默认开启自动补全
 autocompleteContainingElement| 'body' | 自动补全部分的 HTML 将默认添加到 body 元素中。
 
 ####默认的 JS 方法
-
-* `defaultPostRenderFunction`
-
-```js
-var defaultPostRenderFunction = function(data) {
-  var info = data.info;
-  var total = 0;
-  var max_score = 0.0;
-  var $resultContainer = this.getContext().resultContainer;
-  var spellingSuggestion = null;
-
-  if (info) {
-    total = info['total'];
-    max_score = info['max_score'];
-    if (info['spelling_suggestion']) {
-      spellingSuggestion = info['spelling_suggestion']['text'];
-    }
-  }
-
-  if (total === 0) {
-    $resultContainer.html("<div id='ts-no-results' class='ts-no-results'>没有找到结果.</div>");
-  }
-
-  if (spellingSuggestion !== null) {
-    $resultContainer.append('<div class="ts-spelling-suggestion">你是不是在找 <a href="#" data-hash="true" data-spelling-suggestion="' + spellingSuggestion + '">' + spellingSuggestion + '</a>?</div>');
-  }
-};
-```
 
 * `defaultLoadingFunction`
 
