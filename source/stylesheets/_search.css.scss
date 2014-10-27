@@ -1,6 +1,6 @@
 .search-content {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 105px;
+  padding-bottom: 150px;
   .ts-no-results, .ts-loading-message {
     text-align: center;
   }
@@ -29,8 +29,10 @@ body form input.search-input {
 .ts-result h3 a {
   font-size: $h5-font-size;
 }
-.ts-snippet em {
-  color: #990000;
+body span.ts-snippet em {
+  color: #dc6a00;
   font-style: normal;
+  font-weight: normal;
   font-size: $h5-font-size;
+  background-color: white;
 }

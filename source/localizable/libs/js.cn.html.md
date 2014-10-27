@@ -54,6 +54,7 @@ _ts(option);
 
 参数         | 默认值      | 说明
 ----------- | ----------- | -----------
+searchInputElement | '#ts-search-input' | 指定搜索框。`#ts-search-input` 指定 `id` 为 `ts-search-input` 的输入框。
 attachTo | undefined | 自动补全列表默认将位于搜索框的下面。
 collection | 'page' | 默认搜索的 `collection` 是 `page`。
 filters | undefined | 可以通过 filter 参数来限制搜索的范围。更多内容可以查看 [filter][doc-filter]。
