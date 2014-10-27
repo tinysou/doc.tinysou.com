@@ -29,7 +29,7 @@ var option = {
 _ts(option);
 ```
 
-其中 `engineKey` 为一个配置选项，之后的匿名函数会加载搜索插件需要的文件。tinysouSearch 还包含众多其他的配置选项，例如`perPage`，`sort`等等。不指定`searchInputElement`，默认值为`#ts-search-input`，如果你想使用别的`id`，可以通过指定`searchInputElement`。
+其中 `engineKey` 为一个配置选项，之后的匿名函数会加载搜索插件需要的文件。tinysouSearch 还包含众多其他的配置选项，例如`perPage`，`sort`等等。完整的配置选项列表请参见 [Javascript 库][js-opt]。不指定`searchInputElement`，默认值为`#ts-search-input`，如果你想使用别的`id`，可以通过指定`searchInputElement`。
 
 下文中将为大家介绍几个主要的选项：
 
@@ -182,3 +182,4 @@ var option = {
 
 
 [concept]:/guides/concept.html
+[js-opt]:/libs/js.html#3-4-Option
