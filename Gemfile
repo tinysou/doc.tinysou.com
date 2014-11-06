@@ -6,6 +6,7 @@ source 'https://ruby.taobao.org/'
 # middleman
 gem "middleman", "~> 3.3.2"
 gem "middleman-syntax"
+gem "middleman-livereload"
 
 # plugin
 gem "sitemap_generator"
