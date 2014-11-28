@@ -2,7 +2,7 @@
 layout: libs.cn
 section: swift
 toc: article
-title: wift 库
+title: Swift 库
 ---
 
 
@@ -12,7 +12,7 @@ Swift 库通过调用 public 接口，实现发送搜索请求、接收处理搜
 
 所有源码托管在 GitHub， 开发者们可前往查看[最新版本][github]。源码同时附带 [例子][examples]，方便用户学习使用。
 
-## in Swift 
+## in Swift
 
 ### 导入
 在 Swift 项目中，导入微搜索的 Swift 库有两种方法：
@@ -32,16 +32,16 @@ Swift 库通过调用 public 接口，实现发送搜索请求、接收处理搜
 
 ### 使用
 
-设置engine_key
+设置`engine_key`
 
 ```swift
-      let engine_key: String = "示例key" 
+      let engine_key: String = "示例key"
 ```
 建立微搜索
 
 ```swift
       //初始化
-      var tinySouClient = TinySouClient(engine_key: engine_key) 
+      var tinySouClient = TinySouClient(engine_key: engine_key)
       //设置搜索结果显示的页数
       tinySouClient.setPage(page)
       //设置搜索请求参数，省略则采用默认参数
@@ -56,7 +56,7 @@ Swift 库通过调用 public 接口，实现发送搜索请求、接收处理搜
 
 ``` swift
       //初始化
-      var tinySouClient = TinySouClient(engine_key: engine_key) 
+      var tinySouClient = TinySouClient(engine_key: engine_key)
       //设置自动补全参数，省略则采用默认参数
       var fetch_field: Array = ["title", "sections", "url", "updated_at"]
       var ac_params = ["q": search_content, "c": "page", "engine_key": EngineKey, "per_page": 10, "fetch_fields":            fetch_field] as [String: AnyObject]
@@ -88,14 +88,14 @@ Swift 库通过调用 public 接口，实现发送搜索请求、接收处理搜
 设置engine_key
 
 ```java
-      NSString *engine_key = @"0b732cc0ea3c11874190"; 
+      NSString *engine_key = @"0b732cc0ea3c11874190";
 ```
 
 建立微搜索
 
 ```java
       //初始化
-      TinySouClient *tinySouClient = [[TinySouClient alloc]initWithEngine_key: engine_key]; 
+      TinySouClient *tinySouClient = [[TinySouClient alloc]initWithEngine_key: engine_key];
       //设置搜索结果显示的页数
       [tinySouClient setPage:0];
       //设置搜索请求参数，省略则采用默认参数
@@ -110,7 +110,7 @@ Swift 库通过调用 public 接口，实现发送搜索请求、接收处理搜
 
 ```java
       //初始化
-      TinySouClient *tinySouClient = [[TinySouClient alloc]initWithEngine_key: engine_key]; 
+      TinySouClient *tinySouClient = [[TinySouClient alloc]initWithEngine_key: engine_key];
       //设置自动补全参数，省略则采用默认参数
       NSArray *fetch_fields = [[NSArray alloc] initWithObjects:@"title", @"sections", @"url", @"updated_at",nil];
       NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys: search_content, @"q", @"page",@"c", engine_key, @"engine_key",@"0", @"page",@"10",@"per_page",fetch_fields, @"fetch_fields",nil];
@@ -118,7 +118,7 @@ Swift 库通过调用 public 接口，实现发送搜索请求、接收处理搜
       //新建自动补全请求
       NSURLRequest *request = [tinySouClient buildAcRequest: search_content];
       //...发送请求（略）推荐采用NSURLSession
-      //...处理响应结果 (略) 
+      //...处理响应结果 (略)
 ```
 
 [github]:https://github.com/tinysou/tinysou-swift

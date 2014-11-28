@@ -31,6 +31,10 @@ title: 库与插件概述
 
 > Android 库提供对 public API 的 Java 封装，实现发送搜索请求、接收处理搜索响应等功能。
 
+[Swift][swift]
+
+> Swift 库提供对 public API 的 Swift 封装，实现 iOS 设备上发送搜索请求、接收处理搜索响应等功能。
+
 [Javascript][javascript]
 
 > Javascript 库提供对 public API 的 Javascript 封装，实现发送搜索请求、接收处理搜索响应等功能。
@@ -41,3 +45,4 @@ title: 库与插件概述
 [php]:/libs/php.html
 [android]:/libs/android.html
 [javascript]:/libs/js.html
+[swift]:/libs/swift.html
