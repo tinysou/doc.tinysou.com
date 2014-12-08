@@ -35,15 +35,17 @@ Status: 200 OK
 [
   {
     "name": "tinysou",
-    "display_name": "微搜索",
-    "key": "97eaafba26b04d3cdeb9",
-    "doc_count": 22
+    "key": "45ce2dda9c6df592dd0c",
+    "created_at": "2014-12-08T05:32:03.000Z",
+    "updated_at": "2014-12-08T05:32:03.000Z",
+    "doc_count": 75
   },
   {
     "name": "demo",
-    "display_name": "Demo Engine",
-    "key": "04d3cdeb9ba26b04d6b0",
-    "doc_count": 108
+    "key": "b0f51d178ad21308a4d9",
+    "created_at": "2014-10-23T08:10:23.000Z",
+    "updated_at": "2014-12-01T00:46:22.000Z",
+    "doc_count": 19
   }
 ]
 ```
@@ -59,7 +61,6 @@ POST /engines
 | 名称    | 类型    | 说明 |
 | ------ | ------ | ------------------------------------------------------ |
 | name   | string | `engine`的唯一标识。格式：字母，数字，‘-’ 组成，且不以 ‘-’ 开头，长度3-60字符。**必需** |
-| display_name   | string | 显示名。 **可选** |
 
 #### 示例
 
@@ -76,15 +77,16 @@ curl -XPOST 'http://api.tinysou.com/v1/engines' \
 > 响应
 
 ```
-Status: 201 OK
+Status: 201 Created
 Location: http://api.tinysou.com/v1/engines/my-blog
 ```
 
 ```json
 {
   "name": "my-blog",
-  "display_name": "my-blog",
-  "key": "a1b6dfc9866cb22c120f",
+  "key": "01eb8d1991f8b2f22529",
+  "created_at": "2014-12-08T05:39:56.544Z",
+  "updated_at": "2014-12-08T05:39:56.544Z",
   "doc_count": 0
 }
 ```
@@ -112,48 +114,10 @@ Status: 200 OK
 ```json
 {
   "name": "demo",
-  "display_name": "Demo Engine",
-  "key": "04d3cdeb9ba26b04d6b0",
-  "doc_count": 108
-}
-```
-
-### 更新一个 Engine
-
-```
-PUT /engines/:engine_name
-```
-
-#### 参数
-
-| 名称    | 类型    | 说明 |
-| ------ | ------ | ------------------------------------------------------ |
-| display_name   | string | 显示名。 **可选**|
-
-#### 示例
-
-> 请求
-
-```
-curl -XPUT 'http://api.tinysou.com/v1/engines/demo' \
-  -H "Authorization: token YOUR_AUTH_TOKEN" \
-  -d '{
-        "display_name": "My Demo"
-      }'
-```
-
-> 响应
-
-```
-Status: 200 OK
-```
-
-```json
-{
-  "name": "demo",
-  "display_name": "My Demo",
-  "key": "04d3cdeb9ba26b04d6b0",
-  "doc_count": 108
+  "key": "b0f51d178ad21308a4d9",
+  "created_at": "2014-10-23T08:10:23.000Z",
+  "updated_at": "2014-12-01T00:46:22.000Z",
+  "doc_count": 19
 }
 ```
 
@@ -185,6 +149,14 @@ Status: 204 No Content
 GET /engines/:engine_name/collections
 ```
 
+####参数
+
+| 名称    | 类型    | 说明 |
+| ------ | ------ | ------------------------------------------------------ |
+| page   | number | 分页参数，指定返回结果的起始页数，默认从第 1 页开始。**可选** |
+| per_page   | number | 分页参数，指定每页显示条目的数据量，默认每页 20 条。**可选** |
+
+
 ####示例
 
 > 请求
@@ -205,6 +177,7 @@ Status: 200 OK
   {
     "name": "page",
     "field_types": {
+      "start_url": "enum",
       "updated_at": "date",
       "title": "string",
       "url": "enum",
@@ -337,7 +310,6 @@ GET /engines/:engine_name/collections/:collection_name/documents
 
 | 名称    | 类型    | 说明 |
 | ------ | ------ | ------------------------------------------------------ |
-| ids   | array(of string) | `document` `id`的列表。当指定`ids`后，只罗列的`id`在此列表中的`document`。**可选** |
 | page   | number | 分页参数，指定返回结果的起始页数，默认从第 0 页开始。**可选** |
 | per_page   | number | 分页参数，指定每页显示条目的数据量，默认每页20条。**可选** |
 
@@ -538,6 +510,14 @@ Status: 204 No Content
 GET /engines/:engine_name/domains
 ```
 
+####参数
+
+| 名称    | 类型    | 说明 |
+| ------ | ------ | ------------------------------------------------------ |
+| page   | number | 分页参数，指定返回结果的起始页数，默认从第 0 页开始。**可选** |
+| per_page   | number | 分页参数，指定每页显示条目的数据量，默认每页20条。**可选** |
+
+
 ####示例
 
 > 请求
@@ -555,7 +535,7 @@ Status: 200 OK
 ```json
 [
   {
-    "id": "53e5b3423163610029010000",
+    "id": "1",
     "url": "http://tinysou.com",
     "white_list": [
       "http://blog.tinysou.com/cn/",
@@ -565,7 +545,8 @@ Status: 200 OK
     "black_list": [
       "http://blog.tinysou.com/cn/tags/",
       "http://blog.tinysou.com/cn/calendar/"
-    ]
+    ],
+    "crawled_at": "2014-12-08T05:32:17.000Z"
   }
 ]
 ```
@@ -611,12 +592,12 @@ curl -XPOST 'http://api.tinysou.com/v1/engines/demo/domains' \
 
 ```
 Status: 201 OK
-Location: http://api.tinysou.com/v1/engines/demo/domains/53e5b3423163610029010000
+Location: http://api.tinysou.com/v1/engines/demo/domains/1
 ```
 
 ```json
 {
-  "id": "53e5b3423163610029010000",
+  "id": "1",
   "url": "http://tinysou.com",
   "white_list": [
     "http://blog.tinysou.com/cn/",
@@ -626,7 +607,8 @@ Location: http://api.tinysou.com/v1/engines/demo/domains/53e5b342316361002901000
   "black_list": [
     "http://blog.tinysou.com/cn/tags/",
     "http://blog.tinysou.com/cn/calendar/"
-  ]
+  ],
+  "crawled_at": "2014-12-08T05:32:17.000Z"
 }
 ```
 
@@ -641,7 +623,7 @@ GET /engines/:engine_name/domains/:domain_id
 > 请求
 
 ```
-curl -H "Authorization: token YOUR_AUTH_TOKEN" 'http://api.tinysou.com/v1/engines/demo/domains/53e5b3423163610029010000'
+curl -H "Authorization: token YOUR_AUTH_TOKEN" 'http://api.tinysou.com/v1/engines/demo/domains/1'
 ```
 
 > 响应
@@ -652,7 +634,7 @@ Status: 200 OK
 
 ```json
 {
-  "id": "53e5b3423163610029010000",
+  "id": "1",
   "url": "http://tinysou.com",
   "white_list": [
     "http://blog.tinysou.com/cn/",
@@ -662,7 +644,8 @@ Status: 200 OK
   "black_list": [
     "http://blog.tinysou.com/cn/tags/",
     "http://blog.tinysou.com/cn/calendar/"
-  ]
+  ],
+  "crawled_at": "2014-12-08T05:32:17.000Z"
 }
 ```
 
@@ -676,7 +659,6 @@ PUT /engines/:engine_name/domains/:domain_id
 
 | 名称    | 类型    | 说明 |
 | ------ | ------ | ------------------------------------------------------ |
-| url   | string | 起始`url`。例如：'http://doc.tinysou.com'。**必需** |
 | white_list   | array(of string) | 索引白名单。白名单中的每条规则由正则表达式描述。当白名单不为空时，只有网址符合白名单规则的网页才会被索引。**可选** |
 | black_list   | array(of string) | 索引黑名单。黑名单中的每条规则由正则表达式描述。当黑名单不为空时，网址符合黑名单规则的网页不会被索引。**可选** |
 
@@ -687,10 +669,9 @@ PUT /engines/:engine_name/domains/:domain_id
 > 请求
 
 ```
-curl -XPUT 'http://api.tinysou.com/v1/engines/demo/domains/53e5b3423163610029010000' \
+curl -XPUT 'http://api.tinysou.com/v1/engines/demo/domains/1' \
   -H "Authorization: token YOUR_AUTH_TOKEN" \
   -d '{
-        "url": "http://tinysou.com",
         "white_list": [
           "http://blog.tinysou.com/cn/",
           "http://doc.tinysou.com/",
@@ -713,7 +694,7 @@ Status: 200 OK
 
 ```json
 {
-  "id": "53e5b3423163610029010000",
+  "id": "1",
   "url": "http://tinysou.com",
   "white_list": [
     "http://blog.tinysou.com/cn/",
@@ -725,7 +706,8 @@ Status: 200 OK
     "http://blog.tinysou.com/cn/tags/",
     "http://blog.tinysou.com/cn/calendar/",
     "http://tinysou.com/en/"
-  ]
+  ],
+  "crawled_at": "2014-12-08T05:32:17.000Z"
 }
 ```
 
@@ -740,7 +722,7 @@ DELETE /engines/:engine_name/domains/:domain_id
 > 请求
 
 ```
-curl -XDELETE -H "Authorization: token YOUR_AUTH_TOKEN" 'http://api.tinysou.com/v1/engines/demo/domains/53e5b3423163610029010000'
+curl -XDELETE -H "Authorization: token YOUR_AUTH_TOKEN" 'http://api.tinysou.com/v1/engines/demo/domains/1'
 ```
 
 > 响应

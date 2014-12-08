@@ -125,17 +125,22 @@ GET /engines/:engine_name
 所有响应均包含下述的`Header`， 且`body`均以`json`编码。
 
 ```
-$ curl -i http://api.tinysou.com/v1
+$ curl -i http://api.tinysou.com/v1/engines
 
 HTTP/1.1 200 OK
 Server: nginx
-Date: Thu, 21 Aug 2014 14:54:51 GMT
+Date: Mon, 08 Dec 2014 06:12:52 GMT
 Content-Type: application/json
-Content-Length: 15
 Connection: keep-alive
 Status: 200 OK
 
-{"version":"1"}
+{
+  "name": "tinysou",
+  "key": "45ce2dda9c6df592dd0c",
+  "created_at": "2014-12-08T05:32:03.000Z",
+  "updated_at": "2014-12-08T05:32:03.000Z",
+  "doc_count": 75
+}
 ```
 
 ## 权限验证
@@ -147,13 +152,13 @@ Status: 200 OK
 ### `Authorization`Header 方式
 
 ```
-$ curl -H "Authorization: token YOUR_AUTH_TOKEN" http://api.tinysou.com/v1
+$ curl -H "Authorization: token YOUR_AUTH_TOKEN" http://api.tinysou.com/v1/engines
 ```
 
 ### `auth_token`参数
 
 ```
-$ curl http://api.tinysou.com/v1?auth_token=YOUR_AUTH_TOKEN
+$ curl http://api.tinysou.com/v1/engines?auth_token=YOUR_AUTH_TOKEN
 ```
 
 [resource_structure]:resource_structure.png
