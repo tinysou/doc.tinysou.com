@@ -40,12 +40,12 @@ POST /engines/:engine_name/search
 | ------ | ------ | ------------------------------------------------------ |
 | q   | string | 待搜索的内容。**必需**。 |
 | c   | string | 在 [Endpoint 2][endpoint2]中，指定需要混合搜索的多个`collection`。在 [Endpoint 2][endpoint2] 中**必需**，在 [Endpoint 1][endpoint1] 中**无效**。 |
-| page   | number | 分页参数，指定返回结果的起始页数，默认从第 0 页开始。**可选** |
-| per_page   | number | 分页参数，指定每页显示条目的数据量，默认每页20条。**可选** |
+| page   | number | 分页参数，指定返回结果的起始页数，默认从第 1 页开始。**可选** |
+| per_page   | number | 分页参数，指定每页显示条目的数据量，默认每页 20 条。**可选** |
 | search_fields   | array(of string) | 需要被搜索的`field`。**默认值**：所有`string`和`text`类型的`field`。**可选** |
 | fetch_fields   | array(of string) | 搜索结果中，`document`需要包含的`field`。 **默认值**：所有`field`。**可选** |
 | filter | hash | 过滤器。**可选** |
-| sort   | hash | 排序方式。 **可选** |
+| sort   | array | 排序方式。 **可选** |
 
 ### `q`
 
@@ -217,11 +217,9 @@ POST /engines/:engine_name/search
 默认情况下，根据搜索结果中每个`document`的 [score][score]，对搜索结果进行排序。如果你需要按照特定`field`进行排序，可通过`sort`参数实现。例如：
 
 ```
-{
-  "field": "price",
-  "order": "asc",
-  "mode": "avg"
-}
+[
+  {"price" : {"order" : "asc", "mode" : "avg"}}
+]
 ```
 
 表示按照'price'升序(从小到大)排序，当'price'是个`array`时，取平均值作为排序依据。
@@ -250,7 +248,8 @@ POST /engines/:engine_name/search
 | ------ | ------ | ------------------------------------------------------ |
 | query   | string | 本次搜索的搜索内容。例如：`"自定义样式 css"`。 |
 | page   | number | 本次搜索的 `page` 参数值。例如：`1`。 |
-| per_page | number | 本次搜索的 `per_page` 参数值。例如：`10`。 |
+| per_page | number | 本次搜索的 `per_page` 参数值。例如：`20`。 |
+| total_pages | number | 搜索结果总页数。例如：`10` |
 | total | number | 搜索结果的总数。例如：`19`。 |
 | max_score | number | 搜索结果中，`score`的最大值。例如：`1.3830765`。 |
 
@@ -323,11 +322,9 @@ curl -XPOST 'http://api.tinysou.com/v1/engines/blog/collections/post/search' \
             "to": "2014-08-01T00:00:00Z"
           }
         },
-        "sort": {
-          "field": "update_at",
-          "order": "desc",
-          "mode": "min"
-        },
+        "sort": [
+          {"field" : {"order" : "desc"}}
+        ],
         "per_page": 100
       }' | json_reformat
 ```
@@ -338,8 +335,9 @@ curl -XPOST 'http://api.tinysou.com/v1/engines/blog/collections/post/search' \
 {
     "info": {
         "query": "自定义样式",
-        "page": 0,
+        "page": 1,
         "per_page": 100,
+        "total_pages": 1,
         "total": 17,
         "max_score": 1.3830765
     },

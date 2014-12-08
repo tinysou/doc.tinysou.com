@@ -44,11 +44,9 @@ curl -XPOST 'http://api.tinysou.com/v1/engines/blog/collections/post/autocomplet
   -d '{
         "q": "自定义样式",
         "fetch_fields": ["title", "sections", "url"],
-        "sort": {
-          "field": "update_at",
-          "order": "desc",
-          "mode": "min"
-        },
+        "sort": [
+          {"updated_at" : {"order" : "desc"}}
+        ],
         "per_page": 100
       }' | json_reformat
 ```
