@@ -212,6 +212,10 @@ POST /engines/:engine_name/search
 }
 ```
 
+#### * 其他
+
+`filter` 参数兼容 [Elasticsearch filter query dsl](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-filters.html)
+
 ### `sort`
 
 默认情况下，根据搜索结果中每个`document`的 [score][score]，对搜索结果进行排序。如果你需要按照特定`field`进行排序，可通过`sort`参数实现。例如：
@@ -229,6 +233,10 @@ POST /engines/:engine_name/search
 `mode`用来指定，当需要用来排序的`field`的值是`array`时，如何处理。`mode`的可选项包括：`min`，`max`，`sum`和`avg`。
 
 可以用来排序的 `field`类型包括：`enum`，`integer`，`float`和`date`。
+
+#### * 其他
+
+`sort` 参数兼容 [Elasticsearc sort](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-request-sort.html)
 
 ## 结果
 

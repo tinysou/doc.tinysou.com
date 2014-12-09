@@ -75,5 +75,36 @@ curl -XPOST 'http://api.tinysou.com/v1/public/autocomplete' \
       }' | json_reformat
 ```
 
+## 相关文档
+
+```
+GET /public/related
+```
+
+```
+POST /public/related
+```
+
+### 说明
+
+无需`auth_token`进行认证，通过`engine_key`参数指定要进行搜索的`engine`，通过`collection`参数指定要进行搜索的`collection`，通过`id`参数指定要进行搜索的`document`。
+
+其他参数和返回格式和[相关文档 API][related-api]完全一样。
+
+### 示例
+
+```
+curl -XPOST 'http://api.tinysou.com/v1/public/related' \
+  -H 'Content-Type: application/json' \
+  -d '{
+        "engine_key": "97eaafba26b04d3cdeb9",
+        "collection": "page"
+        "id": "5dd4cfc356ef52c895fc01cd451d9efa",
+        "fetch_fields": ["title", "sections", "url"],
+        "per_page": 100
+      }' | json_reformat
+```
+
 [search-api]:/v1/searching.html
 [autocomplete-api]:/v1/autocomplete.html
+[related-api]:/v1/related.html
