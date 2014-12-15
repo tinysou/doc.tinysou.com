@@ -141,6 +141,53 @@ curl -XDELETE -H "Authorization: token YOUR_AUTH_TOKEN" 'http://api.tinysou.com/
 Status: 204 No Content
 ```
 
+### 重新索引一个 Engine
+
+```
+POST /engines/:engine_name/reindex
+```
+
+主要用于修改 `collection` 的 `field_types`。重新索引期间，搜索请求可以正常响应，对文档的添加，更新和删除操作会无效。
+
+#### 参数
+
+| 名称    | 类型    | 说明 |
+| ------ | ------ | ------------------------------------------------------ |
+| field_types | hash | 要更改的 `collection` 对应其 `field_types`。**可选** |
+
+#### 示例
+
+> 请求
+
+```
+curl -XPOST 'http://api.tinysou.com/v1/engines/demo/reindex' \
+  -H "Authorization: token YOUR_AUTH_TOKEN" \
+  -d '{
+    "field_types": {
+      "post": {
+        "title": "string",
+        "tags": "string",
+        "author": "enum",
+        "date": "date",
+        "body": "text",
+        "url": "enum"
+      }
+    }
+  }'
+```
+
+> 响应
+
+```
+Status: 200 OK
+```
+
+```json
+{
+  "status": "reindexing"
+}
+```
+
 ## Collection
 
 ### 罗列 Collections
@@ -546,7 +593,8 @@ Status: 200 OK
       "http://blog.tinysou.com/cn/tags/",
       "http://blog.tinysou.com/cn/calendar/"
     ],
-    "crawled_at": "2014-12-08T05:32:17.000Z"
+    "crawled_at": "2014-12-08T05:32:17.000Z",
+    "crawl_enabled": true
   }
 ]
 ```
@@ -608,7 +656,8 @@ Location: http://api.tinysou.com/v1/engines/demo/domains/1
     "http://blog.tinysou.com/cn/tags/",
     "http://blog.tinysou.com/cn/calendar/"
   ],
-  "crawled_at": "2014-12-08T05:32:17.000Z"
+  "crawled_at": "2014-12-08T05:32:17.000Z",
+  "crawl_enabled": true
 }
 ```
 
@@ -645,7 +694,8 @@ Status: 200 OK
     "http://blog.tinysou.com/cn/tags/",
     "http://blog.tinysou.com/cn/calendar/"
   ],
-  "crawled_at": "2014-12-08T05:32:17.000Z"
+  "crawled_at": "2014-12-08T05:32:17.000Z",
+  "crawl_enabled": true
 }
 ```
 
@@ -661,6 +711,7 @@ PUT /engines/:engine_name/domains/:domain_id
 | ------ | ------ | ------------------------------------------------------ |
 | white_list   | array(of string) | 索引白名单。白名单中的每条规则由正则表达式描述。当白名单不为空时，只有网址符合白名单规则的网页才会被索引。**可选** |
 | black_list   | array(of string) | 索引黑名单。黑名单中的每条规则由正则表达式描述。当黑名单不为空时，网址符合黑名单规则的网页不会被索引。**可选** |
+|crawl_enabled| bool | 是否开启爬虫。 **可选** |
 
 > 注意：当白名单，黑名单同时存在时，先应用白名单规则，再应用黑名单规则。
 
@@ -682,7 +733,8 @@ curl -XPUT 'http://api.tinysou.com/v1/engines/demo/domains/1' \
           "http://blog.tinysou.com/cn/tags/",
           "http://blog.tinysou.com/cn/calendar/",
           "http://tinysou.com/en/"
-        ]
+        ],
+        "crawl_enabled": true
       }'
 ```
 
@@ -707,7 +759,8 @@ Status: 200 OK
     "http://blog.tinysou.com/cn/calendar/",
     "http://tinysou.com/en/"
   ],
-  "crawled_at": "2014-12-08T05:32:17.000Z"
+  "crawled_at": "2014-12-08T05:32:17.000Z",
+  "crawl_enabled": true
 }
 ```
 
@@ -723,6 +776,88 @@ DELETE /engines/:engine_name/domains/:domain_id
 
 ```
 curl -XDELETE -H "Authorization: token YOUR_AUTH_TOKEN" 'http://api.tinysou.com/v1/engines/demo/domains/1'
+```
+
+> 响应
+
+```
+Status: 204 No Content
+```
+
+### 获取爬虫状态
+
+```
+GET /engines/:engine_name/domains/:domain_id/crawl
+```
+
+####示例
+
+> 请求
+
+```
+curl -H "Authorization: token YOUR_AUTH_TOKEN" 'http://api.tinysou.com/v1/engines/demo/domains/1/crawl'
+```
+
+> 响应
+
+```
+Status: 200 OK
+```
+
+```json
+{
+  "status": "running"
+}
+```
+
+### 重新爬取
+
+```
+POST /engines/:engine_name/domains/:domain_id/crawl
+```
+
+#### 参数
+
+| 名称    | 类型    | 说明 |
+| ------ | ------ | ------------------------------------------------------ |
+| url   | string | 要爬取的某个 URL，如果不提供此参数则进行全部重新爬取。**可选** |
+
+#### 示例
+
+> 请求
+
+```
+curl -XPOST 'http://api.tinysou.com/v1/engines/demo/domains/1/crawl' \
+  -H "Authorization: token YOUR_AUTH_TOKEN" \
+  -d '{
+        "url": "http://doc.tinysou.com/v1/overview.html"
+      }'
+```
+
+> 响应
+
+```
+Status: 200 OK
+```
+
+```json
+{
+  "status": "ok"
+}
+```
+
+### 停止爬虫
+
+```
+DELETE /engines/:engine_name/domains/:domain_id/crawl
+```
+
+####示例
+
+> 请求
+
+```
+curl -XDELETE -H "Authorization: token YOUR_AUTH_TOKEN" 'http://api.tinysou.com/v1/engines/demo/domains/1/crawl'
 ```
 
 > 响应
